@@ -13,7 +13,11 @@ function rows(){return db.prepare('SELECT * FROM orders ORDER BY created DESC').
 function originalHome(html){
   const home=`<section id="home" class="promo-home"><div class="promo-art"><img src="hero.png" alt="UYGA YORDAM — хизматлар платформаси"><button class="promo-hotspot promo-main-order" type="button" aria-label="Буюртма бериш" onclick="openOrder()"></button><button class="promo-hotspot promo-phone-order" type="button" aria-label="Буюртма бериш" onclick="openOrder()"></button><button class="promo-hotspot promo-bottom-order" type="button" aria-label="Буюртма бериш" onclick="openOrder()"></button></div><div id="services" class="hidden"></div></section>`;
   const css=`<style id="original-uyga-design">.promo-home{margin:0 -5%}.promo-art{position:relative;width:100%;line-height:0;overflow:hidden}.promo-art>img{display:block;width:100%;height:auto;margin:0;border-radius:0;box-shadow:none}.promo-hotspot{position:absolute;display:block;padding:0;margin:0;border:0;background:transparent;cursor:pointer;z-index:2}.promo-hotspot:focus-visible{outline:3px solid #12a58c;outline-offset:2px;border-radius:18px}.promo-main-order{left:2.2%;top:30.5%;width:18%;height:4.2%}.promo-phone-order{left:75.5%;top:16%;width:11%;height:4%}.promo-bottom-order{left:68.2%;top:88%;width:18.2%;height:4.2%}@media(max-width:700px){.promo-main-order{left:2%;width:18%;height:4.5%}.promo-phone-order{left:75%;width:12%;height:4%}.promo-bottom-order{left:68%;width:19%;height:4.5%}}</style>`;
-  const replaced=html.replace(/<section id="home"[\\s\\S]*?<\\/section>/,home);
+  const start=html.indexOf('<section id="home"');
+  if(start<0)return html;
+  const end=html.indexOf('</section>',start);
+  if(end<0)return html;
+  const replaced=html.slice(0,start)+home+html.slice(end+'</section>'.length);
   return replaced.includes('class="promo-home"') ? replaced.replace('</head>',css+'</head>') : html;
 }
 const server=http.createServer(async(req,res)=>{

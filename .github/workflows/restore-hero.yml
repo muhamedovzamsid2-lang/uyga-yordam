@@ -1,0 +1,38 @@
+name: Restore homepage hero image
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  restore-hero:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore hero image reference
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          marker = '    <div class="panel">\n\n      <h2>UYGA YORDAM</h2>'
+          image = '    <div class="panel">\n\n      <img src="hero.png" alt="UYGA YORDAM">\n\n      <h2>UYGA YORDAM</h2>'
+          if 'src="hero.png"' not in s:
+              if marker not in s:
+                  raise SystemExit('hero target not found')
+              p.write_text(s.replace(marker, image, 1), encoding='utf-8')
+          PY
+      - name: Commit change
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "Hero image already restored"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Restore homepage hero image"
+          git push

@@ -1,0 +1,1 @@
+{"name":"uyga-yordam","version":"1.5.0","private":true,"scripts":{"start":"node server.js"},"engines":{"node":">=22.5.0"}}

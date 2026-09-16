@@ -10,6 +10,12 @@ function body(req){return new Promise((ok,fail)=>{let d='';req.on('data',c=>{d+=
 function token(role){let exp=Date.now()+12*3600e3,p=`${role}.${exp}`,sig=crypto.createHmac('sha256',SECRET).update(p).digest('hex');return `${p}.${sig}`}
 function role(req){let t=(req.headers.authorization||'').replace(/^Bearer\s+/,'');let [r,e,s]=t.split('.');if(!r||!e||!s||+e<Date.now())return null;let x=crypto.createHmac('sha256',SECRET).update(`${r}.${e}`).digest('hex');return crypto.timingSafeEqual(Buffer.from(s),Buffer.from(x))?r:null}
 function rows(){return db.prepare('SELECT * FROM orders ORDER BY created DESC').all().map(o=>({...o,gps:o.lat==null?null:{lat:o.lat,lon:o.lon}}))}
+function originalHome(html){
+  const home=`<section id="home" class="promo-home"><div class="promo-art"><img src="hero.png" alt="UYGA YORDAM — хизматлар платформаси"><button class="promo-hotspot promo-main-order" type="button" aria-label="Буюртма бериш" onclick="openOrder()"></button><button class="promo-hotspot promo-phone-order" type="button" aria-label="Буюртма бериш" onclick="openOrder()"></button><button class="promo-hotspot promo-bottom-order" type="button" aria-label="Буюртма бериш" onclick="openOrder()"></button></div><div id="services" class="hidden"></div></section>`;
+  const css=`<style id="original-uyga-design">.promo-home{margin:0 -5%}.promo-art{position:relative;width:100%;line-height:0;overflow:hidden}.promo-art>img{display:block;width:100%;height:auto;margin:0;border-radius:0;box-shadow:none}.promo-hotspot{position:absolute;display:block;padding:0;margin:0;border:0;background:transparent;cursor:pointer;z-index:2}.promo-hotspot:focus-visible{outline:3px solid #12a58c;outline-offset:2px;border-radius:18px}.promo-main-order{left:2.2%;top:30.5%;width:18%;height:4.2%}.promo-phone-order{left:75.5%;top:16%;width:11%;height:4%}.promo-bottom-order{left:68.2%;top:88%;width:18.2%;height:4.2%}@media(max-width:700px){.promo-main-order{left:2%;width:18%;height:4.5%}.promo-phone-order{left:75%;width:12%;height:4%}.promo-bottom-order{left:68%;width:19%;height:4.5%}}</style>`;
+  const replaced=html.replace(/<section id="home"[\\s\\S]*?<\\/section>/,home);
+  return replaced.includes('class="promo-home"') ? replaced.replace('</head>',css+'</head>') : html;
+}
 const server=http.createServer(async(req,res)=>{
  try{
   let u=new URL(req.url,'http://x');
@@ -20,6 +26,8 @@ const server=http.createServer(async(req,res)=>{
   if(req.method==='PATCH'&&u.pathname.startsWith('/api/orders/')){let r=role(req);if(r!=='admin'&&r!=='worker')return json(res,403,{error:'Рухсат йўқ'});let id=decodeURIComponent(u.pathname.split('/').pop()),b=await body(req);let allowed=['Янги','Ходим бириктирилди','Йўлда','Бажарилмоқда','Тугади'];if(!allowed.includes(b.status))return json(res,400,{error:'Нотўғри ҳолат'});db.prepare('UPDATE orders SET status=? WHERE id=?').run(b.status,id);return json(res,200,{ok:true});}
   if(req.method==='DELETE'&&u.pathname==='/api/orders'){if(role(req)!=='admin')return json(res,403,{error:'Рухсат йўқ'});db.exec('DELETE FROM orders');return json(res,200,{ok:true});}
   if(req.method==='GET'&&u.pathname==='/health')return json(res,200,{ok:true});
-  let p=u.pathname==='/'?'index.html':u.pathname.slice(1),f=path.join(ROOT,p);if(!f.startsWith(ROOT)||!fs.existsSync(f)||fs.statSync(f).isDirectory()){res.writeHead(404);return res.end('404')};let ext=path.extname(f),ct={'.html':'text/html; charset=utf-8','.png':'image/png','.json':'application/json','.js':'text/javascript'}[ext]||'application/octet-stream';res.writeHead(200,{'Content-Type':ct});fs.createReadStream(f).pipe(res);
+  let p=u.pathname==='/'?'index.html':u.pathname.slice(1),f=path.join(ROOT,p);if(!f.startsWith(ROOT)||!fs.existsSync(f)||fs.statSync(f).isDirectory()){res.writeHead(404);return res.end('404')};let ext=path.extname(f),ct={'.html':'text/html; charset=utf-8','.png':'image/png','.json':'application/json','.js':'text/javascript'}[ext]||'application/octet-stream';
+  if(p==='index.html'){const html=originalHome(fs.readFileSync(f,'utf8'));res.writeHead(200,{'Content-Type':ct,'Cache-Control':'no-store, no-cache, must-revalidate, proxy-revalidate','Pragma':'no-cache','Expires':'0'});return res.end(html)}
+  res.writeHead(200,{'Content-Type':ct});fs.createReadStream(f).pipe(res);
  }catch(e){console.error(e);json(res,500,{error:'Server error'})}
 });server.listen(PORT,()=>console.log(`UYGA YORDAM http://localhost:${PORT}`));

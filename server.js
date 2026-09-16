@@ -1,4 +1,5 @@
 // UYGA YORDAM production sync 2026-09-16
+// Railway sync trigger: deploy the current main branch, not the stale snapshot.
 const http=require('http'), fs=require('fs'), path=require('path'), crypto=require('crypto');
 const {DatabaseSync}=require('node:sqlite');
 const ROOT=__dirname, PORT=process.env.PORT||3000, db=new DatabaseSync(path.join(ROOT,'uyga.db'));

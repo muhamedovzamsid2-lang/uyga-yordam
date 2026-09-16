@@ -45,9 +45,18 @@ async function ensureLogin(want){
 
 async function show(id){
   if((id==='admin'||id==='worker')&&!(await ensureLogin(id)))return;
-  ['home','track','worker','admin'].forEach(x=>document.getElementById(x).classList.toggle('hidden',x!==id));
-  if(id==='admin'||id==='worker')await loadOrders();
-  scrollTo(0,0)
+
+  closeOrder();
+
+  ['home','track','worker','admin'].forEach(x=>{
+    document.getElementById(x).classList.toggle('hidden',x!==id);
+  });
+
+  if(id==='admin'||id==='worker'){
+    await loadOrders();
+  }
+
+  scrollTo(0,0);
 }
 
 function renderServices(){
@@ -56,15 +65,36 @@ function renderServices(){
 }
 
 function openOrder(i=0){
-  document.getElementById('modal').classList.remove('hidden');
+  const modal=document.getElementById('modal');
+  modal.classList.remove('hidden');
+  document.body.style.overflow='hidden';
+
   document.getElementById('service').value=i;
   document.getElementById('date').value=new Date().toISOString().slice(0,10);
 }
 
-function closeOrder(){
-  document.getElementById('modal').classList.add('hidden');
-  document.getElementById('orderMsg').textContent=''
+  function closeOrder(){
+  const modal=document.getElementById('modal');
+  modal.classList.add('hidden');
+  document.getElementById('orderMsg').textContent='';
+  document.body.style.overflow='';
 }
+
+document.getElementById('modal').addEventListener('click',function(e){
+  if(e.target===this){
+    closeOrder();
+  }
+});
+
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    const modal=document.getElementById('modal');
+    if(!modal.classList.contains('hidden')){
+      closeOrder();
+    }
+  }
+});
+
 
 /* ТУЗАТИЛГАН CREATE ORDER */
 async function createOrder(){

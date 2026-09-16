@@ -2010,41 +2010,112 @@ async function setStatus(
 
 /* WORK */
 
-function startWork(){
+<script>
+let activeOrderId = null;
 
-  const state =
-    document.getElementById(
-      'workState'
+function selectWorkerOrder(id){
+  activeOrderId = id;
+
+  document.querySelectorAll('.worker-order')
+    .forEach(el => el.style.outline = '');
+
+  const el = document.querySelector(
+    `[data-order-id="${CSS.escape(id)}"]`
+  );
+
+  if(el){
+    el.style.outline = '3px solid var(--p)';
+    el.scrollIntoView({
+      behavior:'smooth',
+      block:'center'
+    });
+  }
+}
+
+async function updateWorkerOrderStatus(status){
+
+  if(!activeOrderId){
+    alert('Аввал буюртмани танланг.');
+    return;
+  }
+
+  try{
+
+    await api(
+      '/api/orders/' +
+      encodeURIComponent(activeOrderId),
+      {
+        method:'PATCH',
+        body:JSON.stringify({
+          status: status
+        })
+      }
     );
 
+    await loadOrders();
+
+    alert(
+      `Буюртма ${activeOrderId} → ${status}`
+    );
+
+  }catch(error){
+
+    alert(error.message);
+
+  }
+}
+
+
+async function startWork(){
+
+  const state =
+    document.getElementById('workState');
+
   if(state){
-
-    state.textContent =
-      'Ишда';
-
+    state.textContent = 'Ишда';
   }
 
   getGPS();
 
-}
+  if(activeOrderId){
 
-
-function finishWork(){
-
-  const state =
-    document.getElementById(
-      'workState'
+    await updateWorkerOrderStatus(
+      'Бажарилмоқда'
     );
 
-  if(state){
+  }else{
 
-    state.textContent =
-      'Тайёр';
+    alert(
+      'Буюртмани танланг, кейин ишни бошланг.'
+    );
 
   }
 
 }
 
+
+async function finishWork(){
+
+  if(!activeOrderId){
+    alert(
+      'Аввал тугатиладиган буюртмани танланг.'
+    );
+    return;
+  }
+
+  await updateWorkerOrderStatus(
+    'Тугади'
+  );
+
+  const state =
+    document.getElementById('workState');
+
+  if(state){
+    state.textContent = 'Тайёр';
+  }
+
+}
+</script>
 
 /* CSV */
 

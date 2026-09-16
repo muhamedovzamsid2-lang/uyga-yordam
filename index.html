@@ -1,34 +1,46 @@
-<!doctype html><html lang="uz"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b7a75"><title>UYGA YORDAM — 1.3</title><style>
-:root{--p:#087f79;--p2:#12a58c;--bg:#f5faf9;--ink:#12302e;--mut:#66807d;--card:#fff;--line:#dcebe8;--ok:#178b54;--warn:#d98a12;--danger:#c94b4b}*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--ink)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}.top{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;padding:12px 5%;gap:12px}.logo{font-size:22px;font-weight:900;color:var(--p)}.nav{display:flex;gap:7px;flex-wrap:wrap}.nav button,.pill{background:#eef8f6;color:var(--p);padding:9px 12px;border-radius:12px;font-weight:700}.wrap{max-width:1180px;margin:auto;padding:24px 5%}.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:center}.hero h1{font-size:clamp(34px,5vw,62px);line-height:1;margin:0 0 16px}.hero p{font-size:18px;color:var(--mut);line-height:1.6}.hero img{width:100%;border-radius:28px;box-shadow:0 18px 50px #087f7922}.cta{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;padding:13px 18px;border-radius:14px;font-weight:800}.ghost{background:#fff;border:1px solid var(--line);padding:12px 16px;border-radius:14px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card,.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 8px 25px #103d3710}.card h3{margin:10px 0 6px}.price{font-weight:900;color:var(--p)}.section{margin-top:30px}.section h2{font-size:28px}.hidden{display:none}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{margin:10px 0}.field label{display:block;font-size:13px;font-weight:800;margin-bottom:6px}.field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat b{font-size:27px;display:block}.status{display:inline-block;padding:6px 9px;border-radius:999px;font-size:12px;font-weight:800}.s-new{background:#fff2d8;color:#a76600}.s-way{background:#e7f2ff;color:#2866a4}.s-work{background:#eee8ff;color:#6548a0}.s-done{background:#e5f8ed;color:#19744a}.order{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}.mut{color:var(--mut)}.modal{position:fixed;inset:0;background:#0b292744;display:flex;align-items:center;justify-content:center;padding:18px;z-index:20}.modalbox{background:#fff;max-width:560px;width:100%;border-radius:22px;padding:22px;max-height:90vh;overflow:auto}.tabs{display:flex;gap:8px;margin-bottom:14px}.tabs button{padding:10px 13px;border-radius:11px;background:#eef8f6;color:var(--p);font-weight:800}.map{height:260px;border-radius:18px;background:repeating-linear-gradient(45deg,#e8f3f1 0 12px,#f5fbfa 12px 24px);position:relative;overflow:hidden}.pin{position:absolute;transform:translate(-50%,-50%);font-size:30px}.footer{text-align:center;padding:35px;color:var(--mut)}@media(max-width:850px){.hero,.grid2{grid-template-columns:1fr}.cards{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.cards{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}.hero h1{font-size:42px}}
-</style></head><body>
-<header class="top"><div class="logo">UYGA YORDAM</div><nav class="nav"><button onclick="show('home')">Бош саҳифа</button><button onclick="show('track')">Буюртмани кузатиш</button><button onclick="show('worker')">Ходим</button><button onclick="show('admin')">Админ</button></nav></header>
-<main class="wrap">
-<section id="home"><div class="hero"><div><span class="pill">🏠 Уй ишлари — бир жойда</span><h1>Вақтингиз йўқми?<br><span style="color:var(--p)">Биз ёрдам берамиз.</span></h1><p>Тозалаш, кир ювиш, таъмир, етказиб бериш, боғ ишлари ва бошқа хизматларни битта буюртмада бошқаринг.</p><div class="actions"><button class="cta" onclick="openOrder()">Буюртма бериш →</button><button class="ghost" onclick="show('track')">Буюртмани текшириш</button></div></div><img src="hero.png" alt="UYGA YORDAM"></div><div class="section"><h2>Хизматлар</h2><div id="services" class="cards"></div></div></section>
-<section id="track" class="hidden"><h2>📦 Буюртмани кузатиш</h2><div class="panel"><div class="field"><label>Буюртма рақами</label><input id="trackId" placeholder="UY-123456"></div><button class="cta" onclick="track()">Текшириш</button><div id="trackResult" class="section"></div></div></section>
-<section id="worker" class="hidden"><h2>👷 Ходим кабинети</h2><div class="stats"><div class="stat card"><span class="mut">Бугунги ишлар</span><b id="wCount">0</b></div><div class="stat card"><span class="mut">Бажарилган</span><b id="wDone">0</b></div><div class="stat card"><span class="mut">GPS</span><b id="gpsState">—</b></div><div class="stat card"><span class="mut">Иш ҳолати</span><b id="workState">Тайёр</b></div></div><div class="section panel"><div class="actions"><button class="cta" onclick="startWork()">🟢 Ишни бошлаш</button><button class="ghost" onclick="getGPS()">📍 GPS текшириш</button><button class="ghost" onclick="finishWork()">🔴 Ишни тугатиш</button></div><div id="gpsText" class="mut" style="margin-top:12px"></div></div><div class="section" id="workerOrders"></div></section>
-<section id="admin" class="hidden"><h2>📊 Админ панели</h2><div class="stats"><div class="stat card"><span class="mut">Жами буюртма</span><b id="aCount">0</b></div><div class="stat card"><span class="mut">Янги</span><b id="aNew">0</b></div><div class="stat card"><span class="mut">Тугади</span><b id="aDone">0</b></div><div class="stat card"><span class="mut">Тушум</span><b id="aRevenue">0</b></div></div><div class="section panel"><div class="actions"><button class="ghost" onclick="exportCSV()">⬇️ Excel/CSV экспорт</button><button class="ghost" onclick="clearOrders()">Тест буюртмаларини тозалаш</button></div></div><div class="section" id="adminOrders"></div></section>
-</main><footer class="footer">UYGA YORDAM · Уйингиздаги ишларни бизга топширинг.</footer>
-<div id="modal" class="modal hidden"><div class="modalbox"><div style="display:flex;justify-content:space-between;align-items:center"><h2>Буюртма бериш</h2><button class="ghost" onclick="closeOrder()">✕</button></div><div class="field"><label>Хизмат</label><select id="service"></select></div><div class="grid2"><div class="field"><label>Исм</label><input id="name" placeholder="Исмингиз"></div><div class="field"><label>Телефон</label><input id="phone" placeholder="+998 90 000 00 00"></div></div><div class="field"><label>Манзил</label><input id="address" placeholder="Маҳалла, кўча, уй"></div><div class="grid2"><div class="field"><label>Сана</label><input id="date" type="date"></div><div class="field"><label>Вақт</label><input id="time" type="time"></div></div><div class="field"><label>Изоҳ</label><textarea id="note" rows="3" placeholder="Қўшимча маълумот"></textarea></div><div class="actions"><button class="cta" onclick="createOrder()">Буюртмани юбориш</button><button class="ghost" onclick="getGPS()">📍 Манзил GPS</button></div><div id="orderMsg" class="mut" style="margin-top:10px"></div></div></div>
-<script>
-const SERVICES=[['🧹','Уй тозалаш',80000],['🧺','Кир ювиш',60000],['🛋️','Диван/матрас',120000],['🛒','Бозордан олиб келиш',30000],['🔧','Сантехник',120000],['⚡','Электрик',120000],['❄️','Кондиционер',180000],['🔌','Техника таъмири',150000],['🪴','Боғбон',100000],['🚚','Юк ташиш',180000],['👵','Катталарга ёрдам',80000],['🪑','Мебель йиғиш',100000]];
-let orders=[], gps=null, authToken=sessionStorage.getItem('uyga_token')||'', authRole=sessionStorage.getItem('uyga_role')||'';
-const api=async(url,opt={})=>{opt.headers={...(opt.headers||{}),'Content-Type':'application/json',...(authToken?{Authorization:'Bearer '+authToken}:{})};let r=await fetch(url,opt);let j=await r.json().catch(()=>({}));if(!r.ok)throw Error(j.error||'Хатолик');return j};
-function money(n){return new Intl.NumberFormat('uz-UZ').format(n)+' сўм'}
-function save(){renderAll()}
-async function ensureLogin(want){if(authToken&&authRole===want)return true;let username=prompt(want==='admin'?'Админ логин:':'Ходим логин:');if(username===null)return false;let password=prompt('Парол:');try{let j=await api('/api/login',{method:'POST',body:JSON.stringify({username,password})});authToken=j.token;authRole=j.role;sessionStorage.setItem('uyga_token',authToken);sessionStorage.setItem('uyga_role',authRole);return authRole===want}catch(e){alert(e.message);return false}}
-async function show(id){if((id==='admin'||id==='worker')&&!(await ensureLogin(id)))return;['home','track','worker','admin'].forEach(x=>document.getElementById(x).classList.toggle('hidden',x!==id));if(id==='admin'||id==='worker')await loadOrders();scrollTo(0,0)}
-function renderServices(){services.innerHTML=SERVICES.map((s,i)=>`<div class="card"><div style="font-size:30px">${s[0]}</div><h3>${s[1]}</h3><div class="price">${money(s[2])} дан</div><button class="ghost" style="margin-top:10px" onclick="openOrder(${i})">Буюртма</button></div>`).join('');service.innerHTML=SERVICES.map((s,i)=>`<option value="${i}">${s[0]} ${s[1]} — ${money(s[2])}</option>`).join('')}
-function openOrder(i=0){modal.classList.remove('hidden');service.value=i;date.value=new Date().toISOString().slice(0,10)} function closeOrder(){modal.classList.add('hidden');orderMsg.textContent=''}
-async function createOrder(){let i=+service.value,n=name.value.trim(),p=phone.value.trim(),a=address.value.trim();if(!n||!p||!a){orderMsg.textContent='Илтимос, исм, телефон ва манзилни киритинг.';return}let id='UY-'+Math.floor(100000+Math.random()*900000);try{await api('/api/orders',{method:'POST',body:JSON.stringify({id,service:SERVICES[i][1],price:SERVICES[i][2],name:n,phone:p,address:a,date:date.value,time:time.value,note:note.value,gps})});orderMsg.innerHTML=`✅ Буюртма серверга қабул қилинди: <b>${id}</b>`;setTimeout(closeOrder,1700)}catch(e){orderMsg.textContent=e.message}}
-function cls(s){return s==='Тугади'?'s-done':s==='Йўлда'?'s-way':s==='Бажарилмоқда'?'s-work':'s-new'}
-function card(o,admin=false){return `<div class="panel order" style="margin-bottom:10px"><div><b>${o.id}</b> · ${o.service}<div class="mut">${o.name} · ${o.phone}<br>${o.address} · ${o.date||''} ${o.time||''}</div>${o.gps?`<div class="mut">📍 ${Number(o.gps.lat).toFixed(5)}, ${Number(o.gps.lon).toFixed(5)}</div>`:''}</div><div style="text-align:right"><span class="status ${cls(o.status)}">${o.status}</span><div class="price" style="margin-top:7px">${money(o.price)}</div>${admin?`<select onchange="setStatus('${o.id}',this.value)" style="margin-top:7px;padding:7px;border-radius:9px;border:1px solid var(--line)"><option ${o.status==='Янги'?'selected':''}>Янги</option><option ${o.status==='Ходим бириктирилди'?'selected':''}>Ходим бириктирилди</option><option ${o.status==='Йўлда'?'selected':''}>Йўлда</option><option ${o.status==='Бажарилмоқда'?'selected':''}>Бажарилмоқда</option><option ${o.status==='Тугади'?'selected':''}>Тугади</option></select>`:''}</div></div>`}
-async function loadOrders(){try{orders=await api('/api/orders');renderAll()}catch(e){alert(e.message)}}
-function renderAll(){aCount.textContent=orders.length;aNew.textContent=orders.filter(o=>o.status==='Янги').length;aDone.textContent=orders.filter(o=>o.status==='Тугади').length;aRevenue.textContent=money(orders.filter(o=>o.status==='Тугади').reduce((a,o)=>a+Number(o.price),0));adminOrders.innerHTML=orders.length?orders.map(o=>card(o,true)).join(''):'<div class="panel mut">Ҳозирча буюртма йўқ.</div>';wCount.textContent=orders.length;wDone.textContent=orders.filter(o=>o.status==='Тугади').length;workerOrders.innerHTML=orders.slice(0,10).map(o=>card(o)).join('')}
-async function setStatus(id,s){try{await api('/api/orders/'+encodeURIComponent(id),{method:'PATCH',body:JSON.stringify({status:s})});await loadOrders()}catch(e){alert(e.message)}}
-async function track(){let id=trackId.value.trim().toUpperCase();try{let o=await api('/api/orders/'+encodeURIComponent(id));trackResult.innerHTML=`<div class="panel"><b>${o.id}</b><h3>${o.service}</h3><span class="status ${cls(o.status)}">${o.status}</span><p>${o.address}</p><div class="map"><div class="pin" style="left:52%;top:46%">📍</div></div><p class="mut">Буюртма қабул қилинган: ${new Date(o.created).toLocaleString('uz-UZ')}</p></div>`}catch(e){trackResult.innerHTML='<div class="panel">Бундай буюртма топилмади.</div>'}}
-function getGPS(){if(!navigator.geolocation){gpsText.textContent='Бу қурилма GPSни қўлламайди.';return}navigator.geolocation.getCurrentPosition(pos=>{gps={lat:pos.coords.latitude,lon:pos.coords.longitude};gpsState.textContent='OK';gpsText.textContent=`📍 GPS аниқланди: ${gps.lat.toFixed(5)}, ${gps.lon.toFixed(5)}`},()=>{gpsState.textContent='Йўқ';gpsText.textContent='GPS рухсати берилмади.'},{enableHighAccuracy:true,timeout:10000})}
-function startWork(){workState.textContent='Ишда';getGPS()} function finishWork(){workState.textContent='Тайёр'}
-function exportCSV(){let rows=[['ID','Хизмат','Мижоз','Телефон','Манзил','Нарх','Ҳолат','Сана','Вақт'],...orders.map(o=>[o.id,o.service,o.name,o.phone,o.address,o.price,o.status,o.date,o.time])];let csv='\ufeff'+rows.map(r=>r.map(x=>'"'+String(x??'').replaceAll('"','""')+'"').join(';')).join('\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='uyga-yordam-orders.csv';a.click()}
-async function clearOrders(){if(confirm('Барча тест буюртмаларини ўчириш?')){try{await api('/api/orders',{method:'DELETE'});await loadOrders()}catch(e){alert(e.message)}}}
-renderServices();renderAll();
-</script></body></html>
+function getGPS(){
+  const msg =
+    document.getElementById('orderMsg') ||
+    document.getElementById('gpsText');
+
+  const state = document.getElementById('gpsState');
+
+  if (!navigator.geolocation) {
+    if (msg) msg.textContent = 'Бу қурилма GPSни қўлламайди.';
+    if (state) state.textContent = 'Йўқ';
+    return;
+  }
+
+  if (msg) msg.textContent = '📍 GPS аниқланмоқда...';
+
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      gps = {
+        lat: pos.coords.latitude,
+        lon: pos.coords.longitude
+      };
+
+      if (state) state.textContent = 'OK';
+
+      if (msg) {
+        msg.textContent =
+          `📍 Манзил GPS аниқланди: ${gps.lat.toFixed(6)}, ${gps.lon.toFixed(6)}. Энди буюртмани юборинг.`;
+      }
+    },
+    err => {
+      if (state) state.textContent = 'Йўқ';
+
+      if (msg) {
+        msg.textContent =
+          err.code === 1
+            ? 'GPS рухсати берилмади. Браузерда Location → Allow қилинг.'
+            : 'GPS аниқланмади. Қайта уриниб кўринг.';
+      }
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 15000,
+      maximumAge: 0
+    }
+  );
+}

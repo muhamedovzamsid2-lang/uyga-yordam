@@ -1,11 +1,10 @@
-```html
 <!doctype html>
 <html lang="uz">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0b7a75">
-<title>UYGA YORDAM — 1.4</title>
+<title>UYGA YORDAM — 1.5</title>
 
 <style>
 :root{
@@ -18,7 +17,7 @@
   --line:#dcebe8;
   --ok:#178b54;
   --warn:#d98a12;
-  --danger:#c94b4b
+  --danger:#c94b4b;
 }
 
 *{box-sizing:border-box}
@@ -30,9 +29,9 @@ html,body{
 }
 
 body{
-  font-family:Inter,Arial,sans-serif;
+  font-family:Arial,Inter,sans-serif;
   background:var(--bg);
-  color:var(--ink)
+  color:var(--ink);
 }
 
 body.modal-open{
@@ -40,37 +39,37 @@ body.modal-open{
 }
 
 button,input,select,textarea{
-  font:inherit
+  font:inherit;
 }
 
 button{
   cursor:pointer;
-  border:0
+  border:0;
 }
 
 .top{
   position:sticky;
   top:0;
-  z-index:5;
+  z-index:10;
   background:#fff;
   border-bottom:1px solid var(--line);
   display:flex;
   justify-content:space-between;
   align-items:center;
   padding:12px 5%;
-  gap:12px
+  gap:12px;
 }
 
 .logo{
   font-size:22px;
   font-weight:900;
-  color:var(--p)
+  color:var(--p);
 }
 
 .nav{
   display:flex;
   gap:7px;
-  flex-wrap:wrap
+  flex-wrap:wrap;
 }
 
 .nav button,.pill{
@@ -78,38 +77,38 @@ button{
   color:var(--p);
   padding:9px 12px;
   border-radius:12px;
-  font-weight:700
+  font-weight:700;
 }
 
 .wrap{
   max-width:1180px;
   margin:auto;
-  padding:24px 5%
+  padding:24px 5%;
 }
 
 .hero{
   display:grid;
   grid-template-columns:1.15fr .85fr;
   gap:24px;
-  align-items:center
+  align-items:center;
 }
 
 .hero h1{
   font-size:clamp(34px,5vw,62px);
   line-height:1;
-  margin:0 0 16px
+  margin:0 0 16px;
 }
 
 .hero p{
   font-size:18px;
   color:var(--mut);
-  line-height:1.6
+  line-height:1.6;
 }
 
 .hero img{
   width:100%;
   border-radius:28px;
-  box-shadow:0 18px 50px #087f7922
+  box-shadow:0 18px 50px #087f7922;
 }
 
 .cta{
@@ -117,20 +116,28 @@ button{
   color:#fff;
   padding:13px 18px;
   border-radius:14px;
-  font-weight:800
+  font-weight:800;
 }
 
 .ghost{
   background:#fff;
   border:1px solid var(--line);
   padding:12px 16px;
-  border-radius:14px
+  border-radius:14px;
+}
+
+.danger{
+  background:#fff0f0;
+  color:#b33333;
+  border:1px solid #f0cccc;
+  padding:12px 16px;
+  border-radius:14px;
 }
 
 .cards{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:14px
+  gap:14px;
 }
 
 .card,.panel{
@@ -138,45 +145,45 @@ button{
   border:1px solid var(--line);
   border-radius:20px;
   padding:18px;
-  box-shadow:0 8px 25px #103d3710
+  box-shadow:0 8px 25px #103d3710;
 }
 
 .card h3{
-  margin:10px 0 6px
+  margin:10px 0 6px;
 }
 
 .price{
   font-weight:900;
-  color:var(--p)
+  color:var(--p);
 }
 
 .section{
-  margin-top:30px
+  margin-top:30px;
 }
 
 .section h2{
-  font-size:28px
+  font-size:28px;
 }
 
 .hidden{
-  display:none !important
+  display:none !important;
 }
 
 .grid2{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:16px
+  gap:16px;
 }
 
 .field{
-  margin:10px 0
+  margin:10px 0;
 }
 
 .field label{
   display:block;
   font-size:13px;
   font-weight:800;
-  margin-bottom:6px
+  margin-bottom:6px;
 }
 
 .field input,
@@ -187,31 +194,31 @@ button{
   border:1px solid var(--line);
   border-radius:12px;
   background:#fff;
-  outline:none
+  outline:none;
 }
 
 .field input:focus,
 .field select:focus,
 .field textarea:focus{
-  border-color:var(--p)
+  border-color:var(--p);
 }
 
 .actions{
   display:flex;
   gap:9px;
   flex-wrap:wrap;
-  margin-top:14px
+  margin-top:14px;
 }
 
 .stats{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:12px
+  gap:12px;
 }
 
 .stat b{
   font-size:27px;
-  display:block
+  display:block;
 }
 
 .status{
@@ -219,41 +226,45 @@ button{
   padding:6px 9px;
   border-radius:999px;
   font-size:12px;
-  font-weight:800
+  font-weight:800;
 }
 
 .s-new{
   background:#fff2d8;
-  color:#a76600
+  color:#a76600;
+}
+
+.s-assigned{
+  background:#e9f4ff;
+  color:#2866a4;
 }
 
 .s-way{
   background:#e7f2ff;
-  color:#2866a4
+  color:#2866a4;
 }
 
 .s-work{
   background:#eee8ff;
-  color:#6548a0
+  color:#6548a0;
 }
 
 .s-done{
   background:#e5f8ed;
-  color:#19744a
+  color:#19744a;
 }
 
 .order{
   display:grid;
   grid-template-columns:1fr auto;
   gap:12px;
-  align-items:center
+  align-items:center;
 }
 
 .mut{
-  color:var(--mut)
+  color:var(--mut);
 }
 
-/* MODAL */
 .modal{
   position:fixed;
   inset:0;
@@ -280,7 +291,7 @@ button{
   padding:22px;
   max-height:90vh;
   overflow:auto;
-  box-shadow:0 25px 80px rgba(0,0,0,.25)
+  box-shadow:0 25px 80px rgba(0,0,0,.25);
 }
 
 .close-btn{
@@ -294,94 +305,99 @@ button{
   color:#555;
   display:flex;
   align-items:center;
-  justify-content:center
+  justify-content:center;
 }
 
 .close-btn:hover{
   background:#f3f7f6;
 }
 
-.tabs{
-  display:flex;
-  gap:8px;
-  margin-bottom:14px
-}
-
-.tabs button{
-  padding:10px 13px;
-  border-radius:11px;
+.notice{
+  padding:12px;
+  border-radius:12px;
   background:#eef8f6;
-  color:var(--p);
-  font-weight:800
+  margin-top:10px;
 }
 
-.map{
-  height:260px;
-  border-radius:18px;
-  background:repeating-linear-gradient(
-    45deg,
-    #e8f3f1 0 12px,
-    #f5fbfa 12px 24px
-  );
-  position:relative;
-  overflow:hidden
+.error{
+  background:#fff0f0;
+  color:#a33333;
+  border:1px solid #efcccc;
+  padding:12px;
+  border-radius:12px;
 }
 
-.pin{
-  position:absolute;
-  transform:translate(-50%,-50%);
-  font-size:30px
+.success{
+  background:#e9f8ef;
+  color:#176c42;
+  border:1px solid #c9ead6;
+  padding:12px;
+  border-radius:12px;
+}
+
+.login-box{
+  max-width:460px;
+  margin:30px auto;
+}
+
+.order-card{
+  margin-bottom:12px;
+}
+
+.worker-active{
+  border:2px solid var(--p);
+}
+
+.small{
+  font-size:13px;
 }
 
 .footer{
   text-align:center;
   padding:35px;
-  color:var(--mut)
-}
-
-.notice{
-  padding:12px;
-  border-radius:12px;
-  background:#eef8f6;
-  margin-top:10px
+  color:var(--mut);
 }
 
 @media(max-width:850px){
   .hero,.grid2{
-    grid-template-columns:1fr
+    grid-template-columns:1fr;
   }
 
   .cards{
-    grid-template-columns:repeat(2,1fr)
+    grid-template-columns:repeat(2,1fr);
   }
 
   .stats{
-    grid-template-columns:repeat(2,1fr)
+    grid-template-columns:repeat(2,1fr);
   }
 }
 
 @media(max-width:520px){
   .cards{
-    grid-template-columns:1fr
+    grid-template-columns:1fr;
   }
 
   .top{
     align-items:flex-start;
-    flex-direction:column
+    flex-direction:column;
   }
 
   .hero h1{
-    font-size:42px
+    font-size:42px;
   }
 
   .modal{
-    padding:10px
+    padding:10px;
   }
 
   .modalbox{
     max-height:94vh;
     border-radius:18px;
-    padding:16px
+    padding:16px;
+  }
+
+  .order{
+    grid-template-columns:1fr;
   }
 }
 </style>
@@ -390,15 +406,33 @@ button{
 <body>
 
 <header class="top">
-  <div class="logo">UYGA YORDAM</div>
+
+  <div class="logo">
+    UYGA YORDAM
+  </div>
 
   <nav class="nav">
-    <button type="button" onclick="show('home')">Бош саҳифа</button>
-    <button type="button" onclick="show('track')">Буюртмани кузатиш</button>
-    <button type="button" onclick="show('worker')">Ходим</button>
-    <button type="button" onclick="show('admin')">Админ</button>
+
+    <button type="button" onclick="show('home')">
+      Бош саҳифа
+    </button>
+
+    <button type="button" onclick="show('track')">
+      Буюртмани кузатиш
+    </button>
+
+    <button type="button" onclick="show('worker')">
+      Ходим
+    </button>
+
+    <button type="button" onclick="show('admin')">
+      Админ
+    </button>
+
   </nav>
+
 </header>
+
 
 <main class="wrap">
 
@@ -407,7 +441,10 @@ button{
   <div class="hero">
 
     <div>
-      <span class="pill">🏠 Уй ишлари — бир жойда</span>
+
+      <span class="pill">
+        🏠 Уй ишлари — бир жойда
+      </span>
 
       <h1>
         Вақтингиз йўқми?
@@ -423,6 +460,7 @@ button{
       </p>
 
       <div class="actions">
+
         <button
           type="button"
           class="cta"
@@ -436,18 +474,39 @@ button{
           onclick="show('track')">
           Буюртмани текшириш
         </button>
+
       </div>
+
     </div>
 
-    <img src="hero.png" alt="UYGA YORDAM">
+    <div class="panel">
+
+      <h2>UYGA YORDAM</h2>
+
+      <p class="mut">
+        Хизмат буюртмаси, ходим иши,
+        GPS ва буюртма ҳолати онлайн назорат қилинади.
+      </p>
+
+      <div class="notice">
+        📦 Буюртма беринг ва рақам орқали кузатинг.
+      </div>
+
+    </div>
 
   </div>
 
+
   <div class="section">
 
-    <h2>Хизматлар</h2>
+    <h2>
+      Хизматлар
+    </h2>
 
-    <div id="services" class="cards"></div>
+    <div
+      id="services"
+      class="cards">
+    </div>
 
   </div>
 
@@ -456,17 +515,23 @@ button{
 
 <section id="track" class="hidden">
 
-  <h2>📦 Буюртмани кузатиш</h2>
+  <h2>
+    📦 Буюртмани кузатиш
+  </h2>
 
   <div class="panel">
 
     <div class="field">
-      <label>Буюртма рақами</label>
+
+      <label>
+        Буюртма рақами
+      </label>
 
       <input
         id="trackId"
         placeholder="UY-123456"
         autocomplete="off">
+
     </div>
 
     <button
@@ -476,7 +541,10 @@ button{
       Текшириш
     </button>
 
-    <div id="trackResult" class="section"></div>
+    <div
+      id="trackResult"
+      class="section">
+    </div>
 
   </div>
 
@@ -485,70 +553,152 @@ button{
 
 <section id="worker" class="hidden">
 
-  <h2>👷 Ходим кабинети</h2>
-
-  <div class="stats">
-
-    <div class="stat card">
-      <span class="mut">Бугунги ишлар</span>
-      <b id="wCount">0</b>
-    </div>
-
-    <div class="stat card">
-      <span class="mut">Бажарилган</span>
-      <b id="wDone">0</b>
-    </div>
-
-    <div class="stat card">
-      <span class="mut">GPS</span>
-      <b id="gpsState">—</b>
-    </div>
-
-    <div class="stat card">
-      <span class="mut">Иш ҳолати</span>
-      <b id="workState">Тайёр</b>
-    </div>
-
-  </div>
-
-  <div class="section panel">
-
-    <div class="actions">
-
-      <button
-        type="button"
-        class="cta"
-        onclick="startWork()">
-        🟢 Ишни бошлаш
-      </button>
-
-      <button
-        type="button"
-        class="ghost"
-        onclick="getGPS()">
-        📍 GPS текшириш
-      </button>
-
-      <button
-        type="button"
-        class="ghost"
-        onclick="finishWork()">
-        🔴 Ишни тугатиш
-      </button>
-
-    </div>
-
-    <div
-      id="gpsText"
-      class="mut"
-      style="margin-top:12px">
-    </div>
-
-  </div>
+  <h2>
+    👷 Ходим кабинети
+  </h2>
 
   <div
-    class="section"
-    id="workerOrders">
+    id="workerLogin"
+    class="panel login-box">
+
+    <h3>
+      Ходим кириши
+    </h3>
+
+    <div class="field">
+
+      <label>
+        Логин
+      </label>
+
+      <input
+        id="workerUser"
+        value="worker">
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Парол
+      </label>
+
+      <input
+        id="workerPass"
+        type="password"
+        placeholder="Парол">
+
+    </div>
+
+    <button
+      class="cta"
+      type="button"
+      onclick="workerLogin()">
+      Кириш
+    </button>
+
+    <div
+      id="workerLoginResult"
+      style="margin-top:10px">
+    </div>
+
+  </div>
+
+
+  <div
+    id="workerPanel"
+    class="hidden">
+
+    <div class="stats">
+
+      <div class="stat card">
+        <span class="mut">
+          Бугунги ишлар
+        </span>
+        <b id="wCount">0</b>
+      </div>
+
+      <div class="stat card">
+        <span class="mut">
+          Бажарилган
+        </span>
+        <b id="wDone">0</b>
+      </div>
+
+      <div class="stat card">
+        <span class="mut">
+          GPS
+        </span>
+        <b id="gpsState">
+          Йўқ
+        </b>
+      </div>
+
+      <div class="stat card">
+        <span class="mut">
+          Иш ҳолати
+        </span>
+        <b id="workState">
+          Тайёр
+        </b>
+      </div>
+
+    </div>
+
+
+    <div class="section panel">
+
+      <div class="actions">
+
+        <button
+          type="button"
+          class="cta"
+          onclick="startWork()">
+          🟢 Ишни бошлаш
+        </button>
+
+        <button
+          type="button"
+          class="ghost"
+          onclick="getGPS()">
+          📍 GPS текшириш
+        </button>
+
+        <button
+          type="button"
+          class="danger"
+          onclick="finishWork()">
+          🔴 Ишни тугатиш
+        </button>
+
+        <button
+          type="button"
+          class="ghost"
+          onclick="loadWorkerOrders()">
+          🔄 Янгилаш
+        </button>
+
+      </div>
+
+      <div
+        id="gpsText"
+        class="mut"
+        style="margin-top:12px">
+      </div>
+
+      <div
+        id="workerMessage"
+        style="margin-top:10px">
+      </div>
+
+    </div>
+
+
+    <div
+      class="section"
+      id="workerOrders">
+    </div>
+
   </div>
 
 </section>
@@ -556,57 +706,136 @@ button{
 
 <section id="admin" class="hidden">
 
-  <h2>📊 Админ панели</h2>
+  <h2>
+    📊 Админ панели
+  </h2>
 
-  <div class="stats">
-
-    <div class="stat card">
-      <span class="mut">Жами буюртма</span>
-      <b id="aCount">0</b>
-    </div>
-
-    <div class="stat card">
-      <span class="mut">Янги</span>
-      <b id="aNew">0</b>
-    </div>
-
-    <div class="stat card">
-      <span class="mut">Тугади</span>
-      <b id="aDone">0</b>
-    </div>
-
-    <div class="stat card">
-      <span class="mut">Тушум</span>
-      <b id="aRevenue">0</b>
-    </div>
-
-  </div>
-
-  <div class="section panel">
-
-    <div class="actions">
-
-      <button
-        type="button"
-        class="ghost"
-        onclick="exportCSV()">
-        ⬇️ Excel/CSV экспорт
-      </button>
-
-      <button
-        type="button"
-        class="ghost"
-        onclick="clearOrders()">
-        Тест буюртмаларини тозалаш
-      </button>
-
-    </div>
-
-  </div>
 
   <div
-    class="section"
-    id="adminOrders">
+    id="adminLogin"
+    class="panel login-box">
+
+    <h3>
+      Админ кириши
+    </h3>
+
+    <div class="field">
+
+      <label>
+        Логин
+      </label>
+
+      <input
+        id="adminUser"
+        value="admin">
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Парол
+      </label>
+
+      <input
+        id="adminPass"
+        type="password"
+        placeholder="Парол">
+
+    </div>
+
+    <button
+      class="cta"
+      type="button"
+      onclick="adminLogin()">
+      Кириш
+    </button>
+
+    <div
+      id="adminLoginResult"
+      style="margin-top:10px">
+    </div>
+
+  </div>
+
+
+  <div
+    id="adminPanel"
+    class="hidden">
+
+    <div class="stats">
+
+      <div class="stat card">
+        <span class="mut">
+          Жами буюртма
+        </span>
+        <b id="aCount">0</b>
+      </div>
+
+      <div class="stat card">
+        <span class="mut">
+          Янги
+        </span>
+        <b id="aNew">0</b>
+      </div>
+
+      <div class="stat card">
+        <span class="mut">
+          Тугади
+        </span>
+        <b id="aDone">0</b>
+      </div>
+
+      <div class="stat card">
+        <span class="mut">
+          Тушум
+        </span>
+        <b id="aRevenue">0</b>
+      </div>
+
+    </div>
+
+
+    <div class="section panel">
+
+      <div class="actions">
+
+        <button
+          type="button"
+          class="ghost"
+          onclick="loadOrders()">
+          🔄 Янгилаш
+        </button>
+
+        <button
+          type="button"
+          class="ghost"
+          onclick="exportCSV()">
+          ⬇️ Excel/CSV экспорт
+        </button>
+
+        <button
+          type="button"
+          class="danger"
+          onclick="clearOrders()">
+          Тест буюртмаларини тозалаш
+        </button>
+
+      </div>
+
+      <div
+        id="adminMessage"
+        style="margin-top:10px">
+      </div>
+
+    </div>
+
+
+    <div
+      class="section"
+      id="adminOrders">
+    </div>
+
   </div>
 
 </section>
@@ -619,8 +848,6 @@ button{
 </footer>
 
 
-<!-- BUYURTMA MODALI -->
-
 <div
   id="modal"
   class="modal hidden"
@@ -630,8 +857,7 @@ button{
     id="modalBox"
     class="modalbox"
     role="dialog"
-    aria-modal="true"
-    aria-labelledby="orderTitle">
+    aria-modal="true">
 
     <div
       style="
@@ -641,7 +867,7 @@ button{
         gap:12px;
       ">
 
-      <h2 id="orderTitle">
+      <h2>
         Буюртма бериш
       </h2>
 
@@ -659,7 +885,9 @@ button{
 
     <div class="field">
 
-      <label>Хизмат</label>
+      <label>
+        Хизмат
+      </label>
 
       <select id="service"></select>
 
@@ -670,7 +898,9 @@ button{
 
       <div class="field">
 
-        <label>Исм</label>
+        <label>
+          Исм
+        </label>
 
         <input
           id="name"
@@ -682,11 +912,13 @@ button{
 
       <div class="field">
 
-        <label>Телефон</label>
+        <label>
+          Телефон
+        </label>
 
         <input
           id="phone"
-          placeholder="+998 90 000 00 00"
+          placeholder="+998..."
           autocomplete="tel">
 
       </div>
@@ -696,12 +928,13 @@ button{
 
     <div class="field">
 
-      <label>Манзил</label>
+      <label>
+        Манзил
+      </label>
 
       <input
         id="address"
-        placeholder="Маҳалла, кўча, уй"
-        autocomplete="street-address">
+        placeholder="Манзилингиз">
 
     </div>
 
@@ -710,7 +943,9 @@ button{
 
       <div class="field">
 
-        <label>Сана</label>
+        <label>
+          Сана
+        </label>
 
         <input
           id="date"
@@ -721,7 +956,9 @@ button{
 
       <div class="field">
 
-        <label>Вақт</label>
+        <label>
+          Вақт
+        </label>
 
         <input
           id="time"
@@ -734,7 +971,9 @@ button{
 
     <div class="field">
 
-      <label>Изоҳ</label>
+      <label>
+        Изоҳ
+      </label>
 
       <textarea
         id="note"
@@ -749,25 +988,43 @@ button{
 
       <button
         type="button"
-        class="cta"
-        onclick="createOrder()">
-        Буюртмани юбориш
+        class="ghost"
+        onclick="getOrderGPS()">
+        📍 GPS олиш
       </button>
 
-      <button
-        type="button"
-        class="ghost"
-        onclick="getGPS()">
-        📍 Манзил GPS
-      </button>
+      <span
+        id="orderGpsText"
+        class="mut"
+        style="align-self:center">
+        GPS олинмаган
+      </span>
 
     </div>
 
 
     <div
-      id="orderMsg"
-      class="mut"
+      id="orderMessage"
       style="margin-top:10px">
+    </div>
+
+
+    <div class="actions">
+
+      <button
+        type="button"
+        class="cta"
+        onclick="createOrder()">
+        Буюртма бериш
+      </button>
+
+      <button
+        type="button"
+        class="ghost"
+        onclick="closeOrder()">
+        Бекор қилиш
+      </button>
+
     </div>
 
   </div>
@@ -777,474 +1034,517 @@ button{
 
 <script>
 
-const SERVICES = [
+/* =========================
+   DATA
+========================= */
 
-  ['🧹','Уй тозалаш',80000],
-  ['🧺','Кир ювиш',60000],
-  ['🛋️','Диван/матрас',120000],
-  ['🛒','Бозордан олиб келиш',30000],
-  ['🔧','Сантехник',120000],
-  ['⚡','Электрик',120000],
-  ['❄️','Кондиционер',180000],
-  ['🔌','Техника таъмири',150000],
-  ['🪴','Боғбон',100000],
-  ['🚚','Юк ташиш',180000],
-  ['👵','Катталарга ёрдам',80000],
-  ['🪑','Мебель йиғиш',100000]
+const services = [
+
+  {
+    name:"🧹 Уй тозалаш",
+    price:80000
+  },
+
+  {
+    name:"🧺 Кир ювиш",
+    price:60000
+  },
+
+  {
+    name:"🛋️ Диван/матрас",
+    price:120000
+  },
+
+  {
+    name:"🛒 Бозордан олиб келиш",
+    price:30000
+  },
+
+  {
+    name:"🔧 Сантехник",
+    price:120000
+  },
+
+  {
+    name:"⚡ Электрик",
+    price:120000
+  },
+
+  {
+    name:"❄️ Кондиционер",
+    price:180000
+  },
+
+  {
+    name:"🔩 Техника таъмири",
+    price:150000
+  },
+
+  {
+    name:"🌳 Боғбон",
+    price:100000
+  },
+
+  {
+    name:"🚚 Юк ташиш",
+    price:180000
+  },
+
+  {
+    name:"👴 Катталарга ёрдам",
+    price:80000
+  },
+
+  {
+    name:"🪑 Мебель йиғиш",
+    price:100000
+  }
 
 ];
 
 
 let orders = [];
 
-let gps = null;
+let activeOrderId = null;
 
-let authToken =
-  sessionStorage.getItem('uyga_token') || '';
+let currentGPS = {
+  lat:null,
+  lon:null
+};
 
-let authRole =
-  sessionStorage.getItem('uyga_role') || '';
+
+/* =========================
+   AUTH
+========================= */
+
+function getToken(){
+
+  return (
+    localStorage.getItem("uyga_token") ||
+    localStorage.getItem("token") ||
+    ""
+  );
+
+}
 
 
-/* API */
+function saveToken(token){
 
-async function api(url,opt={}){
+  if(token){
 
-  opt.headers = {
-    ...(opt.headers || {}),
-    'Content-Type':'application/json',
-    ...(authToken
-      ? {Authorization:'Bearer '+authToken}
-      : {})
+    localStorage.setItem(
+      "uyga_token",
+      token
+    );
+
+    localStorage.setItem(
+      "token",
+      token
+    );
+
+  }
+
+}
+
+
+function clearToken(){
+
+  localStorage.removeItem("uyga_token");
+  localStorage.removeItem("token");
+
+}
+
+
+/* =========================
+   API
+========================= */
+
+async function api(url,options={}){
+
+  const token = getToken();
+
+  const headers = {
+    ...(options.body ? {
+      "Content-Type":"application/json"
+    } : {}),
+    ...(options.headers || {})
   };
 
-  const response =
-    await fetch(url,opt);
 
-  const data =
-    await response
-      .json()
-      .catch(()=>({}));
+  if(token){
 
-  if(!response.ok){
-
-    throw new Error(
-      data.error || 'Хатолик'
-    );
+    headers.Authorization =
+      "Bearer " + token;
 
   }
 
-  return data;
-}
+
+  const response = await fetch(
+    url,
+    {
+      ...options,
+      headers
+    }
+  );
 
 
-/* MONEY */
-
-function money(number){
-
-  return new Intl.NumberFormat(
-    'uz-UZ'
-  ).format(Number(number) || 0)
-  + ' сўм';
-
-}
-
-
-/* LOGIN */
-
-async function ensureLogin(want){
-
-  if(
-    authToken &&
-    authRole === want
-  ){
-    return true;
-  }
-
-  const username =
-    prompt(
-      want === 'admin'
-        ? 'Админ логин:'
-        : 'Ходим логин:'
-    );
-
-  if(username === null){
-    return false;
-  }
-
-  const password =
-    prompt('Парол:');
-
-  if(password === null){
-    return false;
-  }
+  let data = {};
 
   try{
 
-    const result =
-      await api(
-        '/api/login',
-        {
-          method:'POST',
-          body:JSON.stringify({
-            username,
-            password
-          })
-        }
-      );
+    data = await response.json();
 
-    authToken = result.token;
-    authRole = result.role;
+  }catch(e){
 
-    sessionStorage.setItem(
-      'uyga_token',
-      authToken
-    );
+    data = {};
 
-    sessionStorage.setItem(
-      'uyga_role',
-      authRole
-    );
-
-    return authRole === want;
-
-  }catch(error){
-
-    alert(error.message);
-
-    return false;
   }
+
+
+  if(!response.ok){
+
+    if(response.status===401){
+
+      clearToken();
+
+    }
+
+    throw new Error(
+      data.error ||
+      data.message ||
+      ("HTTP " + response.status)
+    );
+
+  }
+
+
+  return data;
 
 }
 
 
-/* PAGE NAVIGATION */
+/* =========================
+   HELPERS
+========================= */
 
-async function show(id){
+function escapeHtml(value){
 
-  /*
-   * ЭНГ МУҲИМ:
-   * ҳар қандай саҳифага ўтганда
-   * модални аввал ёпамиз.
-   */
-
-  forceCloseModal();
-
-  if(
-    (id === 'admin' || id === 'worker') &&
-    !(await ensureLogin(id))
-  ){
-    return;
+  if(value===null || value===undefined){
+    return "";
   }
 
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+function money(value){
+
+  return Number(value || 0)
+    .toLocaleString("uz-UZ") +
+    " сўм";
+
+}
+
+
+function statusClass(status){
+
+  if(status==="Тугади"){
+    return "s-done";
+  }
+
+  if(status==="Бажарилмоқда"){
+    return "s-work";
+  }
+
+  if(status==="Йўлда"){
+    return "s-way";
+  }
+
+  if(status==="Ходим бириктирилди"){
+    return "s-assigned";
+  }
+
+  return "s-new";
+
+}
+
+
+function statusHtml(status){
+
+  const s = status || "Янги";
+
+  return `
+    <span class="status ${statusClass(s)}">
+      ${escapeHtml(s)}
+    </span>
+  `;
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function show(id){
+
   [
-    'home',
-    'track',
-    'worker',
-    'admin'
-  ].forEach(sectionId => {
+    "home",
+    "track",
+    "worker",
+    "admin"
+  ].forEach(section => {
 
-    const section =
-      document.getElementById(sectionId);
+    const el =
+      document.getElementById(section);
 
-    if(section){
+    if(el){
 
-      section.classList.toggle(
-        'hidden',
-        sectionId !== id
+      el.classList.toggle(
+        "hidden",
+        section!==id
       );
 
     }
 
   });
 
-  if(
-    id === 'admin' ||
-    id === 'worker'
-  ){
 
-    await loadOrders();
+  if(id==="worker"){
+
+    if(getToken()){
+
+      document
+        .getElementById("workerLogin")
+        .classList.add("hidden");
+
+      document
+        .getElementById("workerPanel")
+        .classList.remove("hidden");
+
+      loadWorkerOrders();
+
+    }
 
   }
 
+
+  if(id==="admin"){
+
+    if(getToken()){
+
+      document
+        .getElementById("adminLogin")
+        .classList.add("hidden");
+
+      document
+        .getElementById("adminPanel")
+        .classList.remove("hidden");
+
+      loadOrders();
+
+    }
+
+  }
+
+
   window.scrollTo({
     top:0,
-    behavior:'auto'
+    behavior:"smooth"
   });
 
 }
 
 
-/* SERVICES */
+/* =========================
+   SERVICES
+========================= */
 
 function renderServices(){
 
-  const services =
-    document.getElementById('services');
+  const box =
+    document.getElementById("services");
 
-  const serviceSelect =
-    document.getElementById('service');
+  const select =
+    document.getElementById("service");
 
-  services.innerHTML =
-    SERVICES.map(
-      (service,index) => `
+
+  if(box){
+
+    box.innerHTML =
+      services.map((s,index)=>`
+
         <div class="card">
 
-          <div style="font-size:30px">
-            ${service[0]}
+          <div style="font-size:28px">
+            ${escapeHtml(
+              s.name.split(" ")[0]
+            )}
           </div>
 
           <h3>
-            ${service[1]}
+            ${escapeHtml(
+              s.name.substring(
+                s.name.indexOf(" ")+1
+              )
+            )}
           </h3>
 
           <div class="price">
-            ${money(service[2])} дан
+            ${money(s.price)}
           </div>
 
-          <button
-            type="button"
-            class="ghost"
-            style="margin-top:10px"
-            onclick="openOrder(${index})">
-            Буюртма
-          </button>
+          <div class="actions">
+
+            <button
+              class="cta"
+              type="button"
+              onclick="chooseService(${index})">
+              Буюртма
+            </button>
+
+          </div>
 
         </div>
-      `
-    ).join('');
 
-  serviceSelect.innerHTML =
-    SERVICES.map(
-      (service,index) => `
+      `).join("");
+
+  }
+
+
+  if(select){
+
+    select.innerHTML =
+      services.map((s,index)=>`
+
         <option value="${index}">
-          ${service[0]}
-          ${service[1]}
-          —
-          ${money(service[2])}
+          ${escapeHtml(s.name)}
+          — ${money(s.price)}
         </option>
-      `
-    ).join('');
+
+      `).join("");
+
+  }
 
 }
 
 
-/* OPEN MODAL */
+function chooseService(index){
 
-function openOrder(index=0){
+  openOrder();
+
+  const select =
+    document.getElementById("service");
+
+  if(select){
+
+    select.value = String(index);
+
+  }
+
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+function openOrder(){
 
   const modal =
-    document.getElementById('modal');
-
-  const service =
-    document.getElementById('service');
-
-  const date =
-    document.getElementById('date');
+    document.getElementById("modal");
 
   if(!modal){
     return;
   }
 
-  /*
-   * hidden'ни мажбуран олиб ташлаймиз.
-   */
-
-  modal.classList.remove('hidden');
-
-  modal.style.display = 'flex';
+  modal.classList.remove("hidden");
 
   modal.setAttribute(
-    'aria-hidden',
-    'false'
+    "aria-hidden",
+    "false"
   );
 
   document.body.classList.add(
-    'modal-open'
+    "modal-open"
   );
 
-  document.body.style.overflow =
-    'hidden';
 
-  if(service){
-    service.value = index;
-  }
+  const date =
+    document.getElementById("date");
 
-  if(date){
+  if(date && !date.value){
+
+    const d =
+      new Date();
 
     date.value =
-      new Date()
-        .toISOString()
-        .slice(0,10);
+      d.toISOString().slice(0,10);
 
   }
 
 }
 
-
-/* CLOSE MODAL */
 
 function closeOrder(event){
 
   if(event){
-
     event.preventDefault();
     event.stopPropagation();
-
   }
 
-  forceCloseModal();
-
-}
-
-
-/* FORCE CLOSE */
-
-function forceCloseModal(){
-
   const modal =
-    document.getElementById('modal');
+    document.getElementById("modal");
 
   if(!modal){
     return;
   }
 
-  /*
-   * 3 хил усулда ёпамиз:
-   * class
-   * inline display
-   * aria
-   */
-
-  modal.classList.add('hidden');
-
-  modal.style.display = 'none';
+  modal.classList.add("hidden");
 
   modal.setAttribute(
-    'aria-hidden',
-    'true'
+    "aria-hidden",
+    "true"
   );
 
   document.body.classList.remove(
-    'modal-open'
+    "modal-open"
   );
-
-  document.body.style.overflow = '';
-
-  const message =
-    document.getElementById('orderMsg');
-
-  if(message){
-    message.textContent = '';
-  }
 
 }
 
 
-/* MODAL EVENTS */
+document
+  .getElementById("modal")
+  ?.addEventListener(
+    "click",
+    function(event){
 
-document.addEventListener(
-  'DOMContentLoaded',
-  function(){
+      if(
+        event.target === this
+      ){
 
-    const modal =
-      document.getElementById('modal');
-
-    if(!modal){
-      return;
-    }
-
-    /*
-     * Фон босилса ёпилади.
-     */
-
-    modal.addEventListener(
-      'click',
-      function(event){
-
-        if(
-          event.target === modal
-        ){
-
-          forceCloseModal();
-
-        }
+        closeOrder(event);
 
       }
-    );
-
-
-    /*
-     * Ички modal босилганда
-     * ташқи click ишламайди.
-     */
-
-    const box =
-      document.getElementById('modalBox');
-
-    if(box){
-
-      box.addEventListener(
-        'click',
-        function(event){
-
-          event.stopPropagation();
-
-        }
-      );
 
     }
+  );
 
-
-    /*
-     * ✕ тугмасига тўғридан-тўғри
-     * event ҳам бириктирамиз.
-     */
-
-    const closeButton =
-      document.getElementById(
-        'closeOrderButton'
-      );
-
-    if(closeButton){
-
-      closeButton.addEventListener(
-        'click',
-        function(event){
-
-          event.preventDefault();
-          event.stopPropagation();
-
-          forceCloseModal();
-
-        }
-      );
-
-    }
-
-  }
-);
-
-
-/* ESC */
 
 document.addEventListener(
-  'keydown',
+  "keydown",
   function(event){
 
-    if(event.key !== 'Escape'){
-      return;
-    }
+    if(event.key==="Escape"){
 
-    const modal =
-      document.getElementById('modal');
-
-    if(
-      modal &&
-      !modal.classList.contains('hidden')
-    ){
-
-      forceCloseModal();
+      closeOrder(event);
 
     }
 
@@ -1252,146 +1552,78 @@ document.addEventListener(
 );
 
 
-/* GPS */
+/* =========================
+   GPS ORDER
+========================= */
 
-function getGPS(){
+function getOrderGPS(){
 
-  const orderMessage =
+  const text =
     document.getElementById(
-      'orderMsg'
+      "orderGpsText"
     );
-
-  const gpsText =
-    document.getElementById(
-      'gpsText'
-    );
-
-  const gpsState =
-    document.getElementById(
-      'gpsState'
-    );
-
-
-  const messageElement =
-    orderMessage || gpsText;
 
 
   if(!navigator.geolocation){
 
-    if(messageElement){
+    if(text){
 
-      messageElement.textContent =
-        'Бу қурилма GPSни қўлламайди.';
+      text.textContent =
+        "Бу браузер GPS ни қўлламайди.";
 
-    }
-
-    if(gpsState){
-      gpsState.textContent = 'Йўқ';
     }
 
     return;
+
   }
 
 
-  if(messageElement){
+  if(text){
 
-    messageElement.textContent =
-      '📍 GPS аниқланмоқда...';
+    text.textContent =
+      "GPS олинмоқда...";
 
   }
 
 
   navigator.geolocation.getCurrentPosition(
 
-    function(position){
+    position => {
 
-      gps = {
+      currentGPS.lat =
+        position.coords.latitude;
 
-        lat:
-          position.coords.latitude,
-
-        lon:
-          position.coords.longitude
-
-      };
+      currentGPS.lon =
+        position.coords.longitude;
 
 
-      if(gpsState){
+      if(text){
 
-        gpsState.textContent =
-          'OK';
-
-      }
-
-
-      const text =
-        `📍 GPS аниқланди: ${
-          gps.lat.toFixed(6)
-        }, ${
-          gps.lon.toFixed(6)
-        }`;
-
-
-      if(orderMessage){
-
-        orderMessage.textContent =
-          text +
-          '. Энди буюртмани юборинг.';
-
-      }
-
-      if(gpsText){
-
-        gpsText.textContent =
-          text;
+        text.textContent =
+          `GPS: ${
+            currentGPS.lat.toFixed(6)
+          }, ${
+            currentGPS.lon.toFixed(6)
+          }`;
 
       }
 
     },
 
+    error => {
 
-    function(error){
+      if(text){
 
-      if(gpsState){
-
-        gpsState.textContent =
-          'Йўқ';
-
-      }
-
-
-      let text =
-        'GPS аниқланмади. Қайта уриниб кўринг.';
-
-
-      if(error.code === 1){
-
-        text =
-          'GPS рухсати берилмади. Браузерда Location → Allow қилинг.';
-
-      }
-
-
-      if(orderMessage){
-
-        orderMessage.textContent =
-          text;
-
-      }
-
-      if(gpsText){
-
-        gpsText.textContent =
-          text;
+        text.textContent =
+          "GPS рухсати берилмади.";
 
       }
 
     },
-
 
     {
       enableHighAccuracy:true,
-      timeout:15000,
+      timeout:10000,
       maximumAge:0
     }
 
@@ -1400,73 +1632,59 @@ function getGPS(){
 }
 
 
-/* CREATE ORDER */
+/* =========================
+   CREATE ORDER
+========================= */
 
 async function createOrder(){
 
-  const serviceEl =
-    document.getElementById(
-      'service'
-    );
-
-  const nameEl =
-    document.getElementById(
-      'name'
-    );
-
-  const phoneEl =
-    document.getElementById(
-      'phone'
-    );
-
-  const addressEl =
-    document.getElementById(
-      'address'
-    );
-
-  const dateEl =
-    document.getElementById(
-      'date'
-    );
-
-  const timeEl =
-    document.getElementById(
-      'time'
-    );
-
-  const noteEl =
-    document.getElementById(
-      'note'
-    );
-
-  const messageEl =
-    document.getElementById(
-      'orderMsg'
+  const serviceIndex =
+    Number(
+      document.getElementById(
+        "service"
+      ).value
     );
 
 
-  const index =
-    Number(serviceEl.value);
+  const service =
+    services[serviceIndex];
 
 
   const name =
-    nameEl.value.trim();
+    document.getElementById("name").value.trim();
 
   const phone =
-    phoneEl.value.trim();
+    document.getElementById("phone").value.trim();
 
   const address =
-    addressEl.value.trim();
+    document.getElementById("address").value.trim();
+
+  const date =
+    document.getElementById("date").value;
+
+  const time =
+    document.getElementById("time").value;
+
+  const note =
+    document.getElementById("note").value.trim();
 
 
-  if(
-    !name ||
-    !phone ||
-    !address
-  ){
+  const message =
+    document.getElementById(
+      "orderMessage"
+    );
 
-    messageEl.textContent =
-      'Илтимос, исм, телефон ва манзилни киритинг.';
+
+  if(!name || !phone || !address){
+
+    if(message){
+
+      message.innerHTML =
+        `<div class="error">
+          Исм, телефон ва манзилни киритинг.
+        </div>`;
+
+    }
 
     return;
 
@@ -1474,657 +1692,1306 @@ async function createOrder(){
 
 
   const id =
-    'UY-' +
-    Math.floor(
-      100000 +
-      Math.random() * 900000
-    );
+    "UY-" +
+    String(
+      Date.now()
+    ).slice(-6);
 
 
   try{
 
-    await api(
-      '/api/orders',
-      {
-        method:'POST',
+    const result =
+      await api(
+        "/api/orders",
+        {
+          method:"POST",
 
-        body:JSON.stringify({
+          body:JSON.stringify({
 
-          id,
+            id,
 
-          service:
-            SERVICES[index][1],
+            service:service.name,
 
-          price:
-            SERVICES[index][2],
+            price:service.price,
 
-          name,
+            name,
 
-          phone,
+            phone,
 
-          address,
+            address,
 
-          date:
-            dateEl.value,
+            date,
 
-          time:
-            timeEl.value,
+            time,
 
-          note:
-            noteEl.value,
+            note,
 
-          /*
-           * GPS икки форматда ҳам
-           * серверга берилади.
-           */
+            gps:
+              currentGPS.lat &&
+              currentGPS.lon
+                ? `${currentGPS.lat},${currentGPS.lon}`
+                : "",
 
-          gps: gps,
+            lat:currentGPS.lat,
 
-          lat:
-            gps ? gps.lat : null,
+            lon:currentGPS.lon
 
-          lon:
-            gps ? gps.lon : null
+          })
 
-        })
-
-      }
-    );
+        }
+      );
 
 
-    messageEl.innerHTML =
-      `✅ Буюртма серверга қабул қилинди:
-       <b>${id}</b>`;
+    if(message){
+
+      message.innerHTML =
+        `<div class="success">
+          Буюртма қабул қилинди.
+          <br>
+          Буюртма рақами:
+          <b>${escapeHtml(
+            result.id || id
+          )}</b>
+        </div>`;
+
+    }
 
 
-    /*
-     * 1.7 секунддан кейин
-     * модал автоматик ёпилади.
-     */
+    document.getElementById(
+      "trackId"
+    ).value =
+      result.id || id;
+
 
     setTimeout(
-      function(){
-
-        forceCloseModal();
-
+      ()=>{
+        closeOrder();
       },
-      1700
+      1800
     );
 
 
   }catch(error){
 
-    messageEl.textContent =
-      error.message;
+    if(message){
+
+      message.innerHTML =
+        `<div class="error">
+          ${escapeHtml(
+            error.message
+          )}
+        </div>`;
+
+    }
 
   }
 
 }
 
 
-/* TRACK ORDER */
+/* =========================
+   TRACK
+========================= */
 
 async function track(){
 
-  const input =
+  const id =
     document.getElementById(
-      'trackId'
-    );
+      "trackId"
+    ).value.trim();
+
 
   const result =
     document.getElementById(
-      'trackResult'
+      "trackResult"
     );
 
 
-  let id =
-    input.value.trim().toUpperCase();
-
-
-  if(
-    !id
-  ){
+  if(!id){
 
     result.innerHTML =
-      '<div class="panel">Буюртма рақамини киритинг.</div>';
+      `<div class="error">
+        Буюртма рақамини киритинг.
+      </div>`;
 
     return;
 
   }
 
 
-  if(
-    !id.startsWith('UY-')
-  ){
-
-    id =
-      'UY-' +
-      id.replace(
-        /^UY/i,
-        ''
-      );
-
-  }
-
-
-  result.innerHTML =
-    '<div class="panel">⏳ Текширилмоқда...</div>';
-
-
   try{
 
-    const order =
+    const data =
       await api(
-        '/api/orders/' +
+        "/api/orders/" +
         encodeURIComponent(id)
       );
 
 
-    result.innerHTML =
-      card(
-        order,
-        false
-      );
+    const order =
+      data.order || data;
 
 
-  }catch(error){
+    result.innerHTML = `
 
-    result.innerHTML =
-      `
-        <div class="panel">
-          ❌ ${error.message}
-        </div>
-      `;
+      <div class="card">
 
-  }
+        <h3>
+          ${escapeHtml(
+            order.service || "Хизмат"
+          )}
+        </h3>
 
-}
+        <p>
+          Буюртма:
+          <b>
+            ${escapeHtml(
+              order.id
+            )}
+          </b>
+        </p>
 
+        <p>
+          👤
+          ${escapeHtml(
+            order.name
+          )}
+        </p>
 
-/* LOAD ORDERS */
+        <p>
+          📍
+          ${escapeHtml(
+            order.address
+          )}
+        </p>
 
-async function loadOrders(){
+        <p>
+          📅
+          ${escapeHtml(
+            order.date
+          )}
+          ${escapeHtml(
+            order.time
+          )}
+        </p>
 
-  try{
+        <p>
+          Ҳолати:
+          ${statusHtml(
+            order.status
+          )}
+        </p>
 
-    orders =
-      await api('/api/orders');
-
-    renderAll();
-
-  }catch(error){
-
-    console.error(error);
-
-  }
-
-}
-
-
-/* STATUS CLASS */
-
-function statusClass(status){
-
-  if(status === 'Янги'){
-    return 's-new';
-  }
-
-  if(status === 'Йўлда'){
-    return 's-way';
-  }
-
-  if(status === 'Бажарилмоқда'){
-    return 's-work';
-  }
-
-  if(status === 'Тугади'){
-    return 's-done';
-  }
-
-  return 's-new';
-
-}
-
-
-/* ORDER CARD */
-
-function card(
-  order,
-  admin=false
-){
-
-  if(!order){
-    return '';
-  }
-
-
-  const status =
-    order.status || 'Янги';
-
-
-  let adminControls = '';
-
-
-  if(admin){
-
-    adminControls = `
-
-      <div class="actions">
-
-        <select
-          onchange="setStatus(
-            '${escapeHtml(order.id)}',
-            this.value
-          )">
-
-          <option
-            ${status==='Янги'?'selected':''}>
-            Янги
-          </option>
-
-          <option
-            ${status==='Ходим бириктирилди'?'selected':''}>
-            Ходим бириктирилди
-          </option>
-
-          <option
-            ${status==='Йўлда'?'selected':''}>
-            Йўлда
-          </option>
-
-          <option
-            ${status==='Бажарилмоқда'?'selected':''}>
-            Бажарилмоқда
-          </option>
-
-          <option
-            ${status==='Тугади'?'selected':''}>
-            Тугади
-          </option>
-
-        </select>
+        <p>
+          💰
+          <b>
+            ${money(order.price)}
+          </b>
+        </p>
 
       </div>
 
     `;
 
+
+  }catch(error){
+
+    result.innerHTML =
+      `<div class="error">
+        ${escapeHtml(
+          error.message
+        )}
+      </div>`;
+
+  }
+
+}
+
+
+/* =========================
+   WORKER LOGIN
+========================= */
+
+async function workerLogin(){
+
+  const username =
+    document.getElementById(
+      "workerUser"
+    ).value.trim();
+
+  const password =
+    document.getElementById(
+      "workerPass"
+    ).value;
+
+
+  const result =
+    document.getElementById(
+      "workerLoginResult"
+    );
+
+
+  try{
+
+    const data =
+      await api(
+        "/api/login",
+        {
+          method:"POST",
+
+          body:JSON.stringify({
+            username,
+            password
+          })
+
+        }
+      );
+
+
+    if(data.token){
+
+      saveToken(data.token);
+
+    }
+
+
+    document
+      .getElementById("workerLogin")
+      .classList.add("hidden");
+
+    document
+      .getElementById("workerPanel")
+      .classList.remove("hidden");
+
+
+    result.innerHTML = "";
+
+    await loadWorkerOrders();
+
+
+  }catch(error){
+
+    result.innerHTML =
+      `<div class="error">
+        ${escapeHtml(
+          error.message
+        )}
+      </div>`;
+
+  }
+
+}
+
+
+/* =========================
+   WORKER ORDERS
+========================= */
+
+async function loadWorkerOrders(){
+
+  try{
+
+    const data =
+      await api("/api/orders");
+
+
+    orders =
+      Array.isArray(data)
+        ? data
+        : (
+          data.orders ||
+          []
+        );
+
+
+    renderWorkerOrders();
+
+
+  }catch(error){
+
+    document.getElementById(
+      "workerOrders"
+    ).innerHTML =
+      `<div class="error">
+        ${escapeHtml(
+          error.message
+        )}
+      </div>`;
+
+  }
+
+}
+
+
+function renderWorkerOrders(){
+
+  const box =
+    document.getElementById(
+      "workerOrders"
+    );
+
+
+  const count =
+    document.getElementById(
+      "wCount"
+    );
+
+  const done =
+    document.getElementById(
+      "wDone"
+    );
+
+
+  if(count){
+
+    count.textContent =
+      orders.length;
+
   }
 
 
-  return `
+  if(done){
 
-    <div class="panel" style="margin-bottom:12px">
+    done.textContent =
+      orders.filter(
+        o=>o.status==="Тугади"
+      ).length;
 
-      <div class="order">
+  }
 
-        <div>
 
-          <h3 style="margin:0 0 8px">
-            ${escapeHtml(order.service || 'Хизмат')}
-          </h3>
+  if(!orders.length){
 
-          <div class="mut">
-            Буюртма:
-            <b>${escapeHtml(order.id || '')}</b>
-          </div>
+    box.innerHTML =
+      `<div class="panel">
+        Буюртмалар мавжуд эмас.
+      </div>`;
 
-          <div style="margin-top:7px">
-            👤 ${escapeHtml(order.name || '')}
-          </div>
+    return;
+
+  }
+
+
+  box.innerHTML =
+    orders.map(order=>`
+
+      <div
+        class="panel order-card ${
+          activeOrderId===order.id
+            ? "worker-active"
+            : ""
+        }">
+
+        <div class="order">
 
           <div>
-            📞 ${escapeHtml(order.phone || '')}
+
+            <h3>
+              ${escapeHtml(
+                order.service
+              )}
+            </h3>
+
+            <p>
+              Буюртма:
+              <b>
+                ${escapeHtml(
+                  order.id
+                )}
+              </b>
+            </p>
+
+            <p>
+              👤
+              ${escapeHtml(
+                order.name
+              )}
+            </p>
+
+            <p>
+              📞
+              ${escapeHtml(
+                order.phone
+              )}
+            </p>
+
+            <p>
+              📍
+              ${escapeHtml(
+                order.address
+              )}
+            </p>
+
+            <p>
+              📅
+              ${escapeHtml(
+                order.date
+              )}
+              ${escapeHtml(
+                order.time
+              )}
+            </p>
+
+            ${
+              order.note
+                ? `
+                  <p>
+                    📝
+                    ${escapeHtml(
+                      order.note
+                    )}
+                  </p>
+                `
+                : ""
+            }
+
+            <div>
+              ${statusHtml(
+                order.status
+              )}
+            </div>
+
+            <div
+              class="mut small"
+              style="margin-top:8px">
+
+              ${escapeHtml(
+                order.created || ""
+              )}
+
+            </div>
+
           </div>
+
 
           <div>
-            📍 ${escapeHtml(order.address || '')}
-          </div>
 
-          <div>
-            📅 ${escapeHtml(order.date || '')}
-            ${escapeHtml(order.time || '')}
-          </div>
+            <button
+              type="button"
+              class="ghost"
+              onclick="selectWorkerOrder('${escapeHtml(order.id)}')">
+              Танлаш
+            </button>
 
-          ${
-            order.note
-            ? `<div style="margin-top:7px">
-                 📝 ${escapeHtml(order.note)}
-               </div>`
-            : ''
-          }
-
-          ${
-            order.lat != null &&
-            order.lon != null
-            ? `<div class="notice">
-                 📍 GPS:
-                 ${Number(order.lat).toFixed(6)},
-                 ${Number(order.lon).toFixed(6)}
-               </div>`
-            : ''
-          }
-
-        </div>
-
-
-        <div style="text-align:right">
-
-          <div
-            class="status ${statusClass(status)}">
-            ${escapeHtml(status)}
-          </div>
-
-          <div
-            class="price"
-            style="margin-top:10px">
-            ${money(order.price)}
           </div>
 
         </div>
 
       </div>
 
-      ${adminControls}
-
-    </div>
-
-  `;
+    `).join("");
 
 }
 
 
-/* ESCAPE HTML */
-
-function escapeHtml(value){
-
-  return String(value ?? '')
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;')
-    .replace(/'/g,'&#039;');
-
-}
-
-
-/* RENDER */
-
-function renderAll(){
-
-  const adminOrders =
-    document.getElementById(
-      'adminOrders'
-    );
-
-  const workerOrders =
-    document.getElementById(
-      'workerOrders'
-    );
-
-
-  if(adminOrders){
-
-    adminOrders.innerHTML =
-      orders.length
-        ? orders.map(
-            order => card(order,true)
-          ).join('')
-        : '<div class="panel">Буюртмалар йўқ.</div>';
-
-  }
-
-
-  if(workerOrders){
-
-    workerOrders.innerHTML =
-      orders.length
-        ? orders.map(
-            order => card(order,false)
-          ).join('')
-        : '<div class="panel">Буюртмалар йўқ.</div>';
-
-  }
-
-
-  const total =
-    orders.length;
-
-
-  const newCount =
-    orders.filter(
-      o => (o.status || 'Янги') === 'Янги'
-    ).length;
-
-
-  const doneCount =
-    orders.filter(
-      o => o.status === 'Тугади'
-    ).length;
-
-
-  const revenue =
-    orders.reduce(
-      (sum,o) =>
-        sum +
-        Number(o.price || 0),
-      0
-    );
-
-
-  const aCount =
-    document.getElementById(
-      'aCount'
-    );
-
-  const aNew =
-    document.getElementById(
-      'aNew'
-    );
-
-  const aDone =
-    document.getElementById(
-      'aDone'
-    );
-
-  const aRevenue =
-    document.getElementById(
-      'aRevenue'
-    );
-
-
-  if(aCount)
-    aCount.textContent =
-      total;
-
-
-  if(aNew)
-    aNew.textContent =
-      newCount;
-
-
-  if(aDone)
-    aDone.textContent =
-      doneCount;
-
-
-  if(aRevenue)
-    aRevenue.textContent =
-      money(revenue);
-
-
-  const wCount =
-    document.getElementById(
-      'wCount'
-    );
-
-  const wDone =
-    document.getElementById(
-      'wDone'
-    );
-
-
-  if(wCount)
-    wCount.textContent =
-      total;
-
-
-  if(wDone)
-    wDone.textContent =
-      doneCount;
-
-}
-
-
-/* UPDATE STATUS */
-
-async function setStatus(
-  id,
-  status
-){
-
-  try{
-
-    await api(
-      '/api/orders/' +
-      encodeURIComponent(id),
-      {
-        method:'PATCH',
-        body:JSON.stringify({
-          status
-        })
-      }
-    );
-
-
-    await loadOrders();
-
-
-  }catch(error){
-
-    alert(error.message);
-
-  }
-
-}
-
-
-/* WORK */
-
-<script>
-let activeOrderId = null;
+/* =========================
+   SELECT WORKER ORDER
+========================= */
 
 function selectWorkerOrder(id){
+
   activeOrderId = id;
 
-  document.querySelectorAll('.worker-order')
-    .forEach(el => el.style.outline = '');
+  renderWorkerOrders();
 
-  const el = document.querySelector(
-    `[data-order-id="${CSS.escape(id)}"]`
-  );
+  const order =
+    orders.find(
+      o=>o.id===id
+    );
 
-  if(el){
-    el.style.outline = '3px solid var(--p)';
-    el.scrollIntoView({
-      behavior:'smooth',
-      block:'center'
-    });
+
+  if(order){
+
+    const state =
+      document.getElementById(
+        "workState"
+      );
+
+
+    if(state){
+
+      if(order.status==="Тугади"){
+
+        state.textContent =
+          "Тугади";
+
+      }else if(
+        order.status==="Бажарилмоқда"
+      ){
+
+        state.textContent =
+          "Ишда";
+
+      }else{
+
+        state.textContent =
+          "Тайёр";
+
+      }
+
+    }
+
   }
+
 }
+
+
+/* =========================
+   UPDATE STATUS
+========================= */
 
 async function updateWorkerOrderStatus(status){
 
   if(!activeOrderId){
-    alert('Аввал буюртмани танланг.');
-    return;
-  }
 
-  try{
+    if(orders.length){
 
-    await api(
-      '/api/orders/' +
-      encodeURIComponent(activeOrderId),
-      {
-        method:'PATCH',
-        body:JSON.stringify({
-          status: status
-        })
-      }
-    );
+      const first =
+        orders.find(
+          o=>o.status!=="Тугади"
+        ) ||
+        orders[0];
 
-    await loadOrders();
+      activeOrderId =
+        first.id;
 
-    alert(
-      `Буюртма ${activeOrderId} → ${status}`
-    );
-
-  }catch(error){
-
-    alert(error.message);
+    }
 
   }
+
+
+  if(!activeOrderId){
+
+    throw new Error(
+      "Буюртма танланмаган."
+    );
+
+  }
+
+
+  await api(
+    "/api/orders/" +
+    encodeURIComponent(
+      activeOrderId
+    ),
+    {
+      method:"PATCH",
+
+      body:JSON.stringify({
+        status
+      })
+
+    }
+  );
+
+
+  const local =
+    orders.find(
+      o=>o.id===activeOrderId
+    );
+
+
+  if(local){
+
+    local.status =
+      status;
+
+  }
+
+
+  renderWorkerOrders();
+
 }
 
+
+/* =========================
+   START WORK
+========================= */
 
 async function startWork(){
 
-  const state =
-    document.getElementById('workState');
+  if(!activeOrderId){
 
-  if(state){
-    state.textContent = 'Ишда';
+    const available =
+      orders.find(
+        o=>o.status!=="Тугади"
+      );
+
+    if(available){
+
+      activeOrderId =
+        available.id;
+
+    }
+
   }
 
-  getGPS();
 
-  if(activeOrderId){
-
-    await updateWorkerOrderStatus(
-      'Бажарилмоқда'
-    );
-
-  }else{
+  if(!activeOrderId){
 
     alert(
-      'Буюртмани танланг, кейин ишни бошланг.'
+      "Буюртма топилмади."
     );
+
+    return;
+
+  }
+
+
+  const message =
+    document.getElementById(
+      "workerMessage"
+    );
+
+
+  try{
+
+    /*
+      GPS алоҳида ишлайди.
+      GPS рухсати берилмаса ҳам
+      статус серверга ёзилади.
+    */
+
+    getGPS();
+
+
+    await updateWorkerOrderStatus(
+      "Бажарилмоқда"
+    );
+
+
+    document.getElementById(
+      "workState"
+    ).textContent =
+      "Ишда";
+
+
+    if(message){
+
+      message.innerHTML =
+        `<div class="success">
+          Буюртма ҳолати
+          <b>Бажарилмоқда</b>
+          га ўзгартирилди.
+        </div>`;
+
+    }
+
+
+    await loadWorkerOrders();
+
+
+  }catch(error){
+
+    if(message){
+
+      message.innerHTML =
+        `<div class="error">
+          ${escapeHtml(
+            error.message
+          )}
+        </div>`;
+
+    }
 
   }
 
 }
 
+
+/* =========================
+   FINISH WORK
+========================= */
 
 async function finishWork(){
 
   if(!activeOrderId){
-    alert(
-      'Аввал тугатиладиган буюртмани танланг.'
-    );
-    return;
+
+    const available =
+      orders.find(
+        o=>o.status!=="Тугади"
+      );
+
+    if(available){
+
+      activeOrderId =
+        available.id;
+
+    }
+
   }
 
-  await updateWorkerOrderStatus(
-    'Тугади'
-  );
 
-  const state =
-    document.getElementById('workState');
+  if(!activeOrderId){
 
-  if(state){
-    state.textContent = 'Тайёр';
+    alert(
+      "Буюртма топилмади."
+    );
+
+    return;
+
+  }
+
+
+  const message =
+    document.getElementById(
+      "workerMessage"
+    );
+
+
+  try{
+
+    await updateWorkerOrderStatus(
+      "Тугади"
+    );
+
+
+    document.getElementById(
+      "workState"
+    ).textContent =
+      "Тайёр";
+
+
+    if(message){
+
+      message.innerHTML =
+        `<div class="success">
+          Буюртма муваффақиятли
+          <b>Тугади</b>
+          ҳолатига ўтказилди.
+        </div>`;
+
+    }
+
+
+    await loadWorkerOrders();
+
+
+    activeOrderId = null;
+
+
+  }catch(error){
+
+    if(message){
+
+      message.innerHTML =
+        `<div class="error">
+          ${escapeHtml(
+            error.message
+          )}
+        </div>`;
+
+    }
+
   }
 
 }
-</script>
 
-/* CSV */
+
+/* =========================
+   GPS WORKER
+========================= */
+
+function getGPS(){
+
+  const state =
+    document.getElementById(
+      "gpsState"
+    );
+
+  const text =
+    document.getElementById(
+      "gpsText"
+    );
+
+
+  if(!navigator.geolocation){
+
+    if(state){
+      state.textContent =
+        "Йўқ";
+    }
+
+    if(text){
+      text.textContent =
+        "Браузер GPS ни қўлламайди.";
+    }
+
+    return;
+
+  }
+
+
+  if(text){
+
+    text.textContent =
+      "GPS олинмоқда...";
+
+  }
+
+
+  navigator.geolocation.getCurrentPosition(
+
+    position => {
+
+      const lat =
+        position.coords.latitude;
+
+      const lon =
+        position.coords.longitude;
+
+
+      if(state){
+
+        state.textContent =
+          "Бор";
+
+      }
+
+
+      if(text){
+
+        text.textContent =
+          `GPS:
+          ${lat.toFixed(6)},
+          ${lon.toFixed(6)}`;
+
+      }
+
+    },
+
+    error => {
+
+      if(state){
+
+        state.textContent =
+          "Йўқ";
+
+      }
+
+      if(text){
+
+        text.textContent =
+          "GPS рухсати берилмади. Браузерда Location → Allow қилинг.";
+
+      }
+
+    },
+
+    {
+      enableHighAccuracy:true,
+      timeout:10000,
+      maximumAge:0
+    }
+
+  );
+
+}
+
+
+/* =========================
+   ADMIN LOGIN
+========================= */
+
+async function adminLogin(){
+
+  const username =
+    document.getElementById(
+      "adminUser"
+    ).value.trim();
+
+  const password =
+    document.getElementById(
+      "adminPass"
+    ).value;
+
+
+  const result =
+    document.getElementById(
+      "adminLoginResult"
+    );
+
+
+  try{
+
+    const data =
+      await api(
+        "/api/login",
+        {
+          method:"POST",
+
+          body:JSON.stringify({
+            username,
+            password
+          })
+
+        }
+      );
+
+
+    if(data.token){
+
+      saveToken(
+        data.token
+      );
+
+    }
+
+
+    document
+      .getElementById("adminLogin")
+      .classList.add("hidden");
+
+    document
+      .getElementById("adminPanel")
+      .classList.remove("hidden");
+
+
+    result.innerHTML = "";
+
+    await loadOrders();
+
+
+  }catch(error){
+
+    result.innerHTML =
+      `<div class="error">
+        ${escapeHtml(
+          error.message
+        )}
+      </div>`;
+
+  }
+
+}
+
+
+/* =========================
+   ADMIN ORDERS
+========================= */
+
+async function loadOrders(){
+
+  try{
+
+    const data =
+      await api("/api/orders");
+
+
+    orders =
+      Array.isArray(data)
+        ? data
+        : (
+          data.orders ||
+          []
+        );
+
+
+    renderAdminOrders();
+
+
+  }catch(error){
+
+    document.getElementById(
+      "adminOrders"
+    ).innerHTML =
+      `<div class="error">
+        ${escapeHtml(
+          error.message
+        )}
+      </div>`;
+
+  }
+
+}
+
+
+function renderAdminOrders(){
+
+  const box =
+    document.getElementById(
+      "adminOrders"
+    );
+
+
+  const count =
+    document.getElementById(
+      "aCount"
+    );
+
+  const fresh =
+    document.getElementById(
+      "aNew"
+    );
+
+  const done =
+    document.getElementById(
+      "aDone"
+    );
+
+  const revenue =
+    document.getElementById(
+      "aRevenue"
+    );
+
+
+  count.textContent =
+    orders.length;
+
+
+  fresh.textContent =
+    orders.filter(
+      o=>(o.status || "Янги")==="Янги"
+    ).length;
+
+
+  done.textContent =
+    orders.filter(
+      o=>o.status==="Тугади"
+    ).length;
+
+
+  revenue.textContent =
+    money(
+      orders.reduce(
+        (sum,o)=>
+          sum + Number(
+            o.price || 0
+          ),
+        0
+      )
+    );
+
+
+  if(!orders.length){
+
+    box.innerHTML =
+      `<div class="panel">
+        Буюртмалар мавжуд эмас.
+      </div>`;
+
+    return;
+
+  }
+
+
+  box.innerHTML =
+    orders.map(order=>`
+
+      <div class="panel order-card">
+
+        <div class="order">
+
+          <div>
+
+            <h3>
+              ${escapeHtml(
+                order.service
+              )}
+            </h3>
+
+            <p>
+              Буюртма:
+              <b>
+                ${escapeHtml(
+                  order.id
+                )}
+              </b>
+            </p>
+
+            <p>
+              👤
+              ${escapeHtml(
+                order.name
+              )}
+            </p>
+
+            <p>
+              📞
+              ${escapeHtml(
+                order.phone
+              )}
+            </p>
+
+            <p>
+              📍
+              ${escapeHtml(
+                order.address
+              )}
+            </p>
+
+            <p>
+              📅
+              ${escapeHtml(
+                order.date
+              )}
+              ${escapeHtml(
+                order.time
+              )}
+            </p>
+
+            ${
+              order.note
+                ? `
+                  <p>
+                    📝
+                    ${escapeHtml(
+                      order.note
+                    )}
+                  </p>
+                `
+                : ""
+            }
+
+            <p>
+              Ҳолати:
+              ${statusHtml(
+                order.status
+              )}
+            </p>
+
+          </div>
+
+
+          <div>
+
+            <select
+              onchange="adminChangeStatus('${escapeHtml(order.id)}',this.value)">
+
+              <option
+                ${
+                  order.status==="Янги"
+                    ? "selected"
+                    : ""
+                }>
+                Янги
+              </option>
+
+              <option
+                ${
+                  order.status==="Ходим бириктирилди"
+                    ? "selected"
+                    : ""
+                }>
+                Ходим бириктирилди
+              </option>
+
+              <option
+                ${
+                  order.status==="Йўлда"
+                    ? "selected"
+                    : ""
+                }>
+                Йўлда
+              </option>
+
+              <option
+                ${
+                  order.status==="Бажарилмоқда"
+                    ? "selected"
+                    : ""
+                }>
+                Бажарилмоқда
+              </option>
+
+              <option
+                ${
+                  order.status==="Тугади"
+                    ? "selected"
+                    : ""
+                }>
+                Тугади
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =========================
+   ADMIN STATUS
+========================= */
+
+async function adminChangeStatus(
+  id,
+  status
+){
+
+  const message =
+    document.getElementById(
+      "adminMessage"
+    );
+
+
+  try{
+
+    await api(
+      "/api/orders/" +
+      encodeURIComponent(id),
+      {
+        method:"PATCH",
+
+        body:JSON.stringify({
+          status
+        })
+
+      }
+    );
+
+
+    if(message){
+
+      message.innerHTML =
+        `<div class="success">
+          ${escapeHtml(id)}
+          →
+          <b>
+            ${escapeHtml(status)}
+          </b>
+        </div>`;
+
+    }
+
+
+    await loadOrders();
+
+
+  }catch(error){
+
+    if(message){
+
+      message.innerHTML =
+        `<div class="error">
+          ${escapeHtml(
+            error.message
+          )}
+        </div>`;
+
+    }
+
+  }
+
+}
+
+
+/* =========================
+   EXPORT CSV
+========================= */
 
 function exportCSV(){
 
   if(!orders.length){
 
     alert(
-      'Экспорт қилиш учун буюртмалар йўқ.'
+      "Экспорт қилиш учун маълумот йўқ."
     );
 
     return;
@@ -2133,40 +3000,40 @@ function exportCSV(){
 
 
   const header = [
-    'ID',
-    'Хизмат',
-    'Нархи',
-    'Исм',
-    'Телефон',
-    'Манзил',
-    'Сана',
-    'Вақт',
-    'Изоҳ',
-    'GPS_LAT',
-    'GPS_LON',
-    'Статус'
+    "Буюртма",
+    "Хизмат",
+    "Нархи",
+    "Исм",
+    "Телефон",
+    "Манзил",
+    "Сана",
+    "Вақт",
+    "Изоҳ",
+    "GPS",
+    "Статус"
   ];
 
 
   const rows =
-    orders.map(
-      order => [
+    orders.map(o=>[
 
-        order.id,
-        order.service,
-        order.price,
-        order.name,
-        order.phone,
-        order.address,
-        order.date,
-        order.time,
-        order.note,
-        order.lat,
-        order.lon,
-        order.status
+      o.id,
+      o.service,
+      o.price,
+      o.name,
+      o.phone,
+      o.address,
+      o.date,
+      o.time,
+      o.note,
+      (
+        o.lat && o.lon
+          ? `${o.lat},${o.lon}`
+          : ""
+      ),
+      o.status
 
-      ]
-    );
+    ]);
 
 
   const csv = [
@@ -2175,64 +3042,66 @@ function exportCSV(){
 
     ...rows
 
-  ]
-  .map(
-    row =>
-      row.map(
-        value =>
-          `"${String(
-            value ?? ''
-          ).replace(
-            /"/g,
-            '""'
-          )}"`
-      ).join(',')
-  )
-  .join('\n');
+  ].map(row=>
+
+    row.map(value=>{
+
+      const v =
+        String(
+          value ?? ""
+        ).replaceAll(
+          '"',
+          '""'
+        );
+
+      return `"${v}"`;
+
+    }).join(",")
+
+  ).join("\n");
 
 
   const blob =
     new Blob(
-      [
-        '\uFEFF' + csv
-      ],
+      ["\ufeff"+csv],
       {
         type:
-          'text/csv;charset=utf-8;'
+          "text/csv;charset=utf-8;"
       }
     );
 
 
   const url =
-    URL.createObjectURL(blob);
+    URL.createObjectURL(
+      blob
+    );
 
 
-  const link =
-    document.createElement('a');
+  const a =
+    document.createElement("a");
 
-  link.href = url;
+  a.href = url;
 
-  link.download =
-    'uyga-yordam-buyurtmalar.csv';
+  a.download =
+    "uyga-yordam-orders.csv";
 
-  document.body.appendChild(link);
+  a.click();
 
-  link.click();
-
-  link.remove();
 
   URL.revokeObjectURL(url);
 
 }
 
 
-/* CLEAR TEST ORDERS */
+/* =========================
+   CLEAR ORDERS
+========================= */
 
 async function clearOrders(){
 
   if(
     !confirm(
-      'Тест буюртмаларини ўчиришга ишончингиз комилми?'
+      "Барча тест буюртмаларини ўчиришни хоҳлайсизми?"
     )
   ){
 
@@ -2244,43 +3113,40 @@ async function clearOrders(){
   try{
 
     await api(
-      '/api/orders',
+      "/api/orders",
       {
-        method:'DELETE'
+        method:"DELETE"
       }
     );
+
 
     await loadOrders();
 
   }catch(error){
 
-    alert(error.message);
+    alert(
+      error.message
+    );
 
   }
 
 }
 
 
-/* START */
+/* =========================
+   STARTUP
+========================= */
 
-document.addEventListener(
-  'DOMContentLoaded',
-  function(){
+renderServices();
 
-    renderServices();
 
-    /*
-     * Саҳифа очилганда модал
-     * доимо ёпиқ ҳолатда бўлади.
-     */
-
-    forceCloseModal();
-
-  }
-);
+/*
+  Агар токен аввалдан сақланган бўлса,
+  панелларни автоматик очмаймиз.
+  Фойдаланувчи навигация орқали киради.
+*/
 
 </script>
 
 </body>
 </html>
-```

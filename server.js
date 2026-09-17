@@ -19,8 +19,18 @@ db.exec(`CREATE TABLE IF NOT EXISTS orders(
   lat REAL,
   lon REAL,
   status TEXT,
-  created TEXT
+  created TEXT,
+  worker_lat REAL,
+  worker_lon REAL,
+  worker_time TEXT
 );`);
+
+// Safe migration for existing SQLite databases; no UI/design changes.
+for(const sql of [
+  'ALTER TABLE orders ADD COLUMN worker_lat REAL',
+  'ALTER TABLE orders ADD COLUMN worker_lon REAL',
+  'ALTER TABLE orders ADD COLUMN worker_time TEXT'
+]){try{db.exec(sql)}catch(e){if(!String(e.message||e).includes('duplicate column name'))throw e}}
 
 const ADMIN_USER=process.env.ADMIN_USER||'admin';
 const ADMIN_PASS=process.env.ADMIN_PASS||'admin123';
@@ -64,7 +74,7 @@ function role(req){
 }
 
 function rows(){
-  return db.prepare('SELECT * FROM orders ORDER BY created DESC').all().map(o=>({...o,gps:o.lat==null?null:{lat:o.lat,lon:o.lon}}));
+  return db.prepare('SELECT * FROM orders ORDER BY created DESC').all().map(o=>({...o,gps:o.lat==null?null:{lat:o.lat,lon:o.lon},workerGps:o.worker_lat==null?null:{lat:o.worker_lat,lon:o.worker_lon}}));
 }
 
 function originalHome(html){
@@ -153,7 +163,7 @@ const server=http.createServer(async(req,res)=>{
       const id=decodeURIComponent(u.pathname.split('/').pop());
       const o=db.prepare('SELECT * FROM orders WHERE id=?').get(id);
       if(!o)return json(res,404,{error:'Топилмади'});
-      return json(res,200,{...o,gps:o.lat==null?null:{lat:o.lat,lon:o.lon}});
+      return json(res,200,{...o,gps:o.lat==null?null:{lat:o.lat,lon:o.lon},workerGps:o.worker_lat==null?null:{lat:o.worker_lat,lon:o.worker_lon}});
     }
     if(req.method==='GET'&&u.pathname==='/api/orders'){
       const r=role(req);
@@ -169,8 +179,14 @@ const server=http.createServer(async(req,res)=>{
       if(!allowed.includes(b.status))return json(res,400,{error:'Нотўғри ҳолат'});
       const found=db.prepare('SELECT id FROM orders WHERE id=?').get(id);
       if(!found)return json(res,404,{error:'Буюртма топилмади'});
-      db.prepare('UPDATE orders SET status=? WHERE id=?').run(b.status,id);
-      return json(res,200,{ok:true});
+      const lat=Number(b.lat),lon=Number(b.lon);
+      const hasGps=Number.isFinite(lat)&&lat>=-90&&lat<=90&&Number.isFinite(lon)&&lon>=-180&&lon<=180;
+      if(r==='worker'&&hasGps){
+        db.prepare('UPDATE orders SET status=?,worker_lat=?,worker_lon=?,worker_time=? WHERE id=?').run(b.status,lat,lon,new Date().toISOString(),id);
+      }else{
+        db.prepare('UPDATE orders SET status=? WHERE id=?').run(b.status,id);
+      }
+      return json(res,200,{ok:true,workerGps:hasGps?{lat,lon}:null,workerTime:hasGps?new Date().toISOString():null});
     }
     if(req.method==='DELETE'&&u.pathname==='/api/orders'){
       if(role(req)!=='admin')return json(res,403,{error:'Рухсат йўқ'});

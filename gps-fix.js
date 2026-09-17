@@ -43,9 +43,10 @@
         #workerOrders p,#adminOrders p,#trackResult p{word-break:break-word!important;line-height:1.42!important;}
 
         body:has(#home.promo-home:not(.hidden)) .wrap{padding-bottom:94px!important;}
-        .home-control{left:5px!important;right:5px!important;bottom:5px!important;transform:none!important;width:auto!important;max-width:none!important;display:grid!important;grid-template-columns:1.5fr 1fr 1fr!important;gap:4px!important;padding:5px!important;border-radius:15px!important;z-index:9000!important;}
-        .home-control button{min-width:0!important;min-height:48px!important;padding:7px 3px!important;font-size:11px!important;line-height:1.15!important;white-space:normal!important;}
-        .home-control button span{display:block!important;margin:0 0 2px!important;font-size:18px!important;}
+        /* STEP 4 — only the three fixed home controls: equal visual weight, cleaner tap targets. */
+        .home-control{left:7px!important;right:7px!important;bottom:7px!important;transform:none!important;width:auto!important;max-width:none!important;display:grid!important;grid-template-columns:1.2fr 1fr 1fr!important;gap:6px!important;padding:6px!important;border-radius:17px!important;z-index:9000!important;box-sizing:border-box!important;}
+        .home-control button{min-width:0!important;min-height:50px!important;padding:7px 4px!important;font-size:11px!important;line-height:1.15!important;white-space:normal!important;border-radius:13px!important;box-sizing:border-box!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:2px!important;}
+        .home-control button span{display:block!important;margin:0!important;font-size:18px!important;line-height:1!important;}
 
         /* STEP 2 — preserve the home artwork aspect ratio; do not stretch the image. */
         .promo-home{width:100vw!important;margin-left:calc(50% - 50vw)!important;overflow:hidden!important;background:#fff!important;}

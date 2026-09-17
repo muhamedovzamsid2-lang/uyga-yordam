@@ -1,4 +1,5 @@
 // UYGA YORDAM production server
+// deploy sync marker 2026-09-17
 const http=require('http'), fs=require('fs'), path=require('path'), crypto=require('crypto');
 const {DatabaseSync}=require('node:sqlite');
 const ROOT=__dirname;

@@ -87,7 +87,12 @@ function originalHome(html){
       <button class="promo-hotspot promo-service s11" type="button" aria-label="Бошка хизматлар" onclick="chooseService(11)"></button>
     </div>
     <div id="services" class="hidden"></div>
-  </section>`;
+  </section>
+  <div class="home-control" aria-label="Платформа менюси">
+    <button type="button" onclick="show('track')"><span>🔎</span> Буюртмани текшириш</button>
+    <button type="button" onclick="show('worker')"><span>👷</span> Ходим</button>
+    <button type="button" onclick="show('admin')"><span>📊</span> Админ</button>
+  </div>`;
 
   const css=`<style id="original-uyga-design">
     body:has(#home.promo-home:not(.hidden)) .top,
@@ -104,10 +109,17 @@ function originalHome(html){
     .promo-service{width:10.9%;height:10.9%;top:45.8%}
     .promo-service.s0{left:2.2%}.promo-service.s1{left:14.1%}.promo-service.s2{left:26.0%}.promo-service.s3{left:37.9%}.promo-service.s4{left:49.8%}.promo-service.s5{left:61.8%}
     .promo-service.s6{left:2.2%;top:58.2%}.promo-service.s7{left:14.1%;top:58.2%}.promo-service.s8{left:26.0%;top:58.2%}.promo-service.s9{left:37.9%;top:58.2%}.promo-service.s10{left:49.8%;top:58.2%}.promo-service.s11{left:61.8%;top:58.2%}
+    .home-control{position:fixed;right:18px;top:18px;z-index:10000;display:flex;gap:8px;align-items:center;max-width:min(760px,calc(100vw - 36px));padding:7px;border:1px solid rgba(255,255,255,.7);border-radius:18px;background:rgba(255,255,255,.92);box-shadow:0 10px 35px rgba(0,0,0,.16);backdrop-filter:blur(10px)}
+    .home-control button{padding:10px 13px;border-radius:12px;background:#eef8f6;color:#087f79;font-weight:800;white-space:nowrap;box-shadow:inset 0 0 0 1px #dcebe8}
+    .home-control button:hover{background:#087f79;color:#fff}
+    .home-control span{margin-right:3px}
     @media(max-width:700px){
       .promo-main-order{left:2%;width:18%;height:4.5%}
       .promo-phone-order{left:75%;width:12%;height:4%}
       .promo-bottom-order{left:68%;width:19%;height:4.5%}
+      .home-control{left:8px;right:8px;top:8px;max-width:none;justify-content:center;gap:5px;padding:5px;border-radius:15px}
+      .home-control button{flex:1;padding:9px 6px;font-size:12px}
+      .home-control button:first-child{flex:1.5}
     }
   </style>`;
 

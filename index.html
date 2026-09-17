@@ -402,12 +402,17 @@ button{
 }
 
 .social-links{
-  margin:30px 0 10px;
+  position:relative;
+  z-index:100;
+  margin:30px 0 130px;
+  padding-bottom:20px;
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:12px;
 }
 .social-link{
+  position:relative;
+  z-index:101;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -422,16 +427,17 @@ button{
   font-weight:800;
   box-shadow:0 8px 25px #103d3710;
   transition:transform .15s ease,box-shadow .15s ease;
+  pointer-events:auto;
 }
 .social-link:hover{
   transform:translateY(-2px);
   box-shadow:0 12px 30px #103d3718;
 }
 @media(max-width:850px){
-  .social-links{grid-template-columns:repeat(2,1fr)}
+  .social-links{grid-template-columns:repeat(2,1fr);margin-bottom:140px}
 }
 @media(max-width:520px){
-  .social-links{grid-template-columns:1fr}
+  .social-links{grid-template-columns:1fr;margin-bottom:150px}
 }
 
 </style>
@@ -883,7 +889,7 @@ button{
     <a class="social-link" href="https://www.instagram.com/uygayordam" target="_blank" rel="noopener noreferrer">📷 Instagram</a>
     <a class="social-link" href="https://t.me/uygayordam_uz" target="_blank" rel="noopener noreferrer">✈️ Telegram</a>
     <a class="social-link" href="https://www.facebook.com/share/1WNgTj2yhB/" target="_blank" rel="noopener noreferrer">🔵 Facebook</a>
-    <a class="social-link" href="https://www.tiktok.com/@uygayordam" target="_blank" rel="noopener noreferrer">🎵 TikTok</a>
+    <a class="social-link" href="https://www.tiktok.com/@uygayordam?lang=en" target="_blank" rel="noopener noreferrer">🎵 TikTok</a>
   </div>
 </section>
 

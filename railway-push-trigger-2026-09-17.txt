@@ -1,0 +1,3 @@
+Railway deployment trigger — UYGA YORDAM
+Force production to consume the current main commit.
+Verification: navigation fix must be live.

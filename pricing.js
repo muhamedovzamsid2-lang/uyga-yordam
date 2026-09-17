@@ -23,6 +23,11 @@
     const box=document.getElementById('services');
     if(!box)return;
     box.innerHTML=SERVICES.map((s,i)=>`<div class="card"><div style="font-size:28px">${['🧹','🧺','🧼','🛒','📦','🔧','❄️','🔌','🪑','🌿','🚛','🛠️'][i]}</div><h3>${s.name}</h3><div class="price">${s.price>0?money(s.price):'Келишилади'} <span class="small">${s.unit}</span></div><p class="mut small">${s.desc}</p><button type="button" class="cta" onclick="window.chooseService&&window.chooseService(${i})">Буюртма бериш</button></div>`).join('');
+
+    const select=document.getElementById('service');
+    if(select){
+      select.innerHTML=SERVICES.map((s,i)=>`<option value="${i}">${s.name} — ${s.price>0?money(s.price):'Келишилади'}</option>`).join('');
+    }
   }
 
   function installAdminGpsPanel(){
@@ -73,4 +78,74 @@
 
   window.UYGA_PRICE_FORMAT=money;
   window.addEventListener('DOMContentLoaded',function(){render();startAdminGps()});
+})();
+
+/* ORDER PRICE SYNC — keep the order modal and submitted order on the same current price list. */
+(function(){
+  const SERVICES=window.UYGA_SERVICES||[];
+  const icons=['🧹','🧺','🧼','🛒','📦','🔧','❄️','🔌','🪑','🌿','🚛','🛠️'];
+  window.UYGA_CURRENT_GPS={lat:null,lon:null};
+
+  function ready(fn){
+    if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',fn,{once:true});
+    else fn();
+  }
+
+  function install(){
+    const select=document.getElementById('service');
+    if(select){
+      select.innerHTML=SERVICES.map((s,i)=>`<option value="${i}">${icons[i]||''} ${s.name} — ${s.price>0?Number(s.price).toLocaleString('ru-RU')+' сўм':'Келишилади'}</option>`).join('');
+    }
+
+    window.chooseService=function(index){
+      if(typeof window.openOrder==='function') window.openOrder();
+      const el=document.getElementById('service');
+      if(el)el.value=String(index);
+    };
+
+    window.getOrderGPS=function(){
+      const text=document.getElementById('orderGpsText');
+      if(!navigator.geolocation){if(text)text.textContent='Бу браузер GPS ни қўлламайди.';return;}
+      if(text)text.textContent='GPS олинмоқда...';
+      navigator.geolocation.getCurrentPosition(position=>{
+        window.UYGA_CURRENT_GPS={lat:position.coords.latitude,lon:position.coords.longitude};
+        if(text)text.textContent=`GPS: ${position.coords.latitude.toFixed(6)}, ${position.coords.longitude.toFixed(6)}`;
+      },()=>{if(text)text.textContent='GPS рухсати берилмади.'},{enableHighAccuracy:true,timeout:10000,maximumAge:0});
+    };
+
+    window.createOrder=async function(){
+      const select=document.getElementById('service');
+      const serviceIndex=Number(select&&select.value||0);
+      const service=SERVICES[serviceIndex]||SERVICES[0];
+      const name=(document.getElementById('name')?.value||'').trim();
+      const phone=(document.getElementById('phone')?.value||'').trim();
+      const address=(document.getElementById('address')?.value||'').trim();
+      const date=document.getElementById('date')?.value||'';
+      const time=document.getElementById('time')?.value||'';
+      const note=(document.getElementById('note')?.value||'').trim();
+      const message=document.getElementById('orderMessage');
+
+      if(!name||!phone||!address){
+        if(message)message.innerHTML='<div class="error">Исм, телефон ва манзилни киритинг.</div>';
+        return;
+      }
+
+      const id='UY-'+String(Date.now()).slice(-6);
+      const gps=window.UYGA_CURRENT_GPS||{};
+      try{
+        const result=await window.api('/api/orders',{method:'POST',body:JSON.stringify({
+          id,service:service.name,price:service.price,name,phone,address,date,time,note,
+          gps:gps.lat&&gps.lon?`${gps.lat},${gps.lon}`:'',lat:gps.lat||null,lon:gps.lon||null
+        })});
+        if(message)message.innerHTML=`<div class="success">Буюртма қабул қилинди.<br>Буюртма рақами: <b>${typeof window.escapeHtml==='function'?window.escapeHtml(result.id||id):(result.id||id)}</b></div>`;
+        const trackId=document.getElementById('trackId');
+        if(trackId)trackId.value=result.id||id;
+        setTimeout(()=>{if(typeof window.closeOrder==='function')window.closeOrder();},1800);
+      }catch(error){
+        if(message)message.innerHTML=`<div class="error">${typeof window.escapeHtml==='function'?window.escapeHtml(error.message):error.message}</div>`;
+      }
+    };
+  }
+
+  ready(install);
 })();

@@ -90,9 +90,30 @@
       }
 
       @media(min-width:701px){
-        .promo-home{width:100vw!important;margin-left:calc(50% - 50vw)!important;overflow:hidden!important;}
-        .promo-art{width:100vw!important;height:calc(100vh - 1px)!important;min-height:620px!important;overflow:hidden!important;}
-        .promo-art>img{width:100vw!important;height:100%!important;object-fit:fill!important;display:block!important;border-radius:0!important;}
+        /* STEP 6 — desktop inner worker/admin/track screens only. */
+        #worker,#admin,#track{max-width:1180px!important;margin:0 auto!important;padding:10px 20px 32px!important;box-sizing:border-box!important;}
+        #worker h2,#admin h2,#track h2{font-size:28px!important;line-height:1.2!important;margin:8px 0 16px!important;}
+        #worker .panel,#admin .panel,#track .panel{border-radius:20px!important;padding:20px!important;box-shadow:0 8px 28px #103d370d!important;}
+        #worker .stats,#admin .stats{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important;margin-bottom:16px!important;}
+        #worker .stats .card,#admin .stats .card{min-height:96px!important;padding:16px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;}
+        #worker .stat b,#admin .stat b{font-size:28px!important;line-height:1.1!important;margin-bottom:5px!important;}
+        #workerOrders,#adminOrders,#trackResult{width:100%!important;}
+        #workerOrders .panel,#adminOrders .panel{overflow:visible!important;}
+        #workerOrders .order-card,#adminOrders .order-card{padding:16px!important;margin:0 0 12px!important;border-radius:17px!important;box-shadow:0 6px 20px #103d370b!important;}
+        #workerOrders .order-card:last-child,#adminOrders .order-card:last-child{margin-bottom:0!important;}
+        #workerOrders .order,#adminOrders .order{gap:14px!important;}
+        #workerOrders .order h3,#adminOrders .order h3{font-size:18px!important;line-height:1.3!important;margin:0 0 7px!important;}
+        #workerOrders .status,#adminOrders .status{font-size:12px!important;padding:6px 10px!important;border-radius:9px!important;}
+        #workerOrders .actions,#adminOrders .actions{display:flex!important;flex-wrap:wrap!important;gap:9px!important;margin-top:12px!important;}
+        #workerOrders .actions button,#adminOrders .actions button{min-height:44px!important;padding:10px 16px!important;border-radius:11px!important;}
+        #workerMessage,#adminMessage,#trackResult{margin-top:12px!important;}
+        .worker-gps-box{padding:14px!important;border-radius:15px!important;}
+        #worker .notice,#admin .notice,#track .notice{padding:14px!important;border-radius:14px!important;line-height:1.5!important;}
+        #worker .error,#admin .error,#track .error,#worker .success,#admin .success,#track .success{padding:14px!important;border-radius:14px!important;line-height:1.5!important;}
+        #worker input,#worker select,#worker textarea,#admin input,#admin select,#admin textarea,#track input,#track select,#track textarea{min-height:46px!important;border-radius:11px!important;box-sizing:border-box!important;}
+        #worker .field,#admin .field,#track .field{margin:9px 0!important;}
+        #worker .actions,#admin .actions,#track .actions{margin-top:12px!important;}
+        #worker .actions button,#admin .actions button,#track .actions button{min-height:46px!important;border-radius:11px!important;}
       }
 
       body:not(:has(#home.promo-home:not(.hidden))) .social-hub{display:none!important;}

@@ -760,6 +760,46 @@ button{
   .social-links{grid-template-columns:1fr;margin-bottom:150px}
 }
 
+
+.social-links{
+  position:relative;
+  z-index:100;
+  margin:30px 0 130px;
+  padding-bottom:20px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+.social-link{
+  position:relative;
+  z-index:101;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:52px;
+  padding:12px 14px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:#fff;
+  color:var(--ink);
+  text-decoration:none;
+  font-weight:800;
+  box-shadow:0 8px 25px #103d3710;
+  transition:transform .15s ease,box-shadow .15s ease;
+  pointer-events:auto;
+}
+.social-link:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 30px #103d3718;
+}
+@media(max-width:850px){
+  .social-links{grid-template-columns:repeat(2,1fr);margin-bottom:140px}
+}
+@media(max-width:520px){
+  .social-links{grid-template-columns:1fr;margin-bottom:150px}
+}
+
 </style>
 </head>
 

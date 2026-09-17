@@ -33,26 +33,30 @@
     panel.id='adminGpsEvidence';
     panel.className='panel';
     panel.style.cssText='margin:0 0 12px;padding:14px;border-radius:16px;background:#eef8f6;border:1px solid #cfe4df;';
-    panel.innerHTML='<div style="font-weight:900;font-size:16px">📍 Ходим GPS далили</div><div id="adminGpsEvidenceBody" style="margin-top:8px;color:#526966">Маълумот олинмоқда...</div>';
+    panel.innerHTML='<div style="font-weight:900;font-size:16px">📍 Ходим GPS далили</div><div id="adminGpsEvidenceMeta" style="margin-top:5px;font-size:12px;color:#66807d">GPS сақланган ташрифлар: 0</div><div id="adminGpsEvidenceBody" style="margin-top:8px;color:#526966">Маълумот олинмоқда...</div>';
     orders.parentNode.insertBefore(panel,orders);
     refreshAdminGpsPanel();
   }
 
   async function refreshAdminGpsPanel(){
     const body=document.getElementById('adminGpsEvidenceBody');
+    const meta=document.getElementById('adminGpsEvidenceMeta');
     if(!body||typeof window.api!=='function')return;
     try{
       const data=await window.api('/api/orders');
       const rows=Array.isArray(data)?data:(data&&data.orders)||[];
       const gpsRows=rows.filter(o=>o.workerGps&&Number.isFinite(Number(o.workerGps.lat))&&Number.isFinite(Number(o.workerGps.lon)));
+      if(meta)meta.innerHTML='GPS сақланган ташрифлар: <b>'+gpsRows.length+'</b>';
       if(!gpsRows.length){body.innerHTML='Ҳозирча ходимдан GPS далили сақланмаган.';return;}
       body.innerHTML=gpsRows.map(o=>{
         const g=o.workerGps, tm=o.worker_time||'';
         const when=tm?new Date(tm).toLocaleString('uz-UZ',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'}):'вақт кўрсатилмаган';
         const map='https://www.google.com/maps?q='+encodeURIComponent(g.lat+','+g.lon);
-        return '<div style="padding:9px 0;border-top:1px solid #d5e7e3"><b>'+String(o.id||'').replace(/[&<>]/g,'')+'</b> — '+String(o.name||'').replace(/[&<>]/g,'')+'<br>📍 '+Number(g.lat).toFixed(7)+', '+Number(g.lon).toFixed(7)+'<br>🕐 '+when+'<br><a href="'+map+'" target="_blank" rel="noopener" style="color:#087f79;font-weight:900">🗺 Харитада очиш</a></div>';
+        const status=String(o.status||'').replace(/[&<>]/g,'');
+        const service=String(o.service||'').replace(/[&<>]/g,'');
+        return '<div style="padding:9px 0;border-top:1px solid #d5e7e3"><b>'+String(o.id||'').replace(/[&<>]/g,'')+'</b> — '+String(o.name||'').replace(/[&<>]/g,'')+'<br>🛠 '+service+'<br>📌 '+status+'<br>📍 '+Number(g.lat).toFixed(7)+', '+Number(g.lon).toFixed(7)+'<br>🕐 '+when+'<br><a href="'+map+'" target="_blank" rel="noopener" style="color:#087f79;font-weight:900">🗺 Харитада очиш</a></div>';
       }).join('');
-    }catch(e){body.innerHTML='GPS маълумотини олишда хато. Админ кабинетига қайта киринг.';}
+    }catch(e){body.innerHTML='GPS маълумотини олишда хато. Админ кабинетига қайта киринг.';if(meta)meta.textContent='GPS далилларини янгилаб бўлмади';}
   }
 
   function startAdminGps(){

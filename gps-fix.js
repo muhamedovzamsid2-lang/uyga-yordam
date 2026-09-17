@@ -35,6 +35,12 @@
         #workerOrders .order-card .status,#adminOrders .order-card .status{font-size:12px!important;padding:7px 11px!important;margin:0 0 6px!important}
         #workerOrders .order-card .actions,#adminOrders .order-card .actions{gap:9px!important;margin-top:12px!important}
       }
+      /* Step 10 — status colors only */
+      #workerOrders .order-card .status.status-new,#adminOrders .order-card .status.status-new{background:#eaf4ff!important;color:#1f5f95!important}
+      #workerOrders .order-card .status.status-assigned,#adminOrders .order-card .status.status-assigned{background:#f1edff!important;color:#6046a6!important}
+      #workerOrders .order-card .status.status-road,#adminOrders .order-card .status.status-road{background:#fff5df!important;color:#9a6400!important}
+      #workerOrders .order-card .status.status-working,#adminOrders .order-card .status.status-working{background:#e7f7ef!important;color:#14784a!important}
+      #workerOrders .order-card .status.status-done,#adminOrders .order-card .status.status-done{background:#e9ecef!important;color:#4f5b60!important}
     `; document.head.appendChild(s);
   }
   function readGps(){return new Promise(function(resolve,reject){if(!navigator.geolocation)return reject(new Error('Бу телефон браузери GPS ни қўлламайди.'));navigator.geolocation.getCurrentPosition(function(pos){var c=pos.coords||{},lat=Number(c.latitude),lon=Number(c.longitude),accuracy=Number(c.accuracy||0);if(!Number.isFinite(lat)||!Number.isFinite(lon))return reject(new Error('Аниқ координата олинмади. Location/GPS ни ёқинг.'));resolve({lat:lat,lon:lon,accuracy:accuracy});},function(err){var m='Location рухсати берилмаган. Телефонда Location → Allow қилинг.';if(err&&err.code===2)m='Телефон аниқ жойни топмади. GPS/Location ни ёқиб, очиқ жойда қайта текширинг.';if(err&&err.code===3)m='GPS олиш вақти тугади. Қайта текширинг.';reject(new Error(m));},{enableHighAccuracy:true,timeout:30000,maximumAge:0});})}
@@ -55,6 +61,25 @@
     tools.querySelector('#adminOrderSearch').addEventListener('input',apply);tools.querySelector('#adminOrderStatus').addEventListener('change',apply);
     var mo=new MutationObserver(function(){apply()});mo.observe(box,{childList:true,subtree:true});window.__uygaApplyAdminFilters=apply;apply();
   }
-  function install(){injectFix();installSelection();installWorkerButtons();installPolling();installAdminFilters();setTimeout(function(){installSelection();installWorkerButtons();installPolling();installAdminFilters()},500)}
+  function installStatusColors(){
+    if(window.__uygaStatusColors)return;
+    function apply(){
+      ['#workerOrders .status','#adminOrders .status'].forEach(function(sel){
+        document.querySelectorAll(sel).forEach(function(el){
+          el.classList.remove('status-new','status-assigned','status-road','status-working','status-done');
+          var t=(el.textContent||'').trim();
+          if(t==='Янги')el.classList.add('status-new');
+          else if(t==='Ходим бириктирилди')el.classList.add('status-assigned');
+          else if(t==='Йўлда')el.classList.add('status-road');
+          else if(t==='Бажарилмоқда')el.classList.add('status-working');
+          else if(t==='Тугади')el.classList.add('status-done');
+        });
+      });
+    }
+    window.__uygaStatusColors=true;
+    var mo=new MutationObserver(apply);mo.observe(document.body,{childList:true,subtree:true,characterData:true});
+    window.__uygaApplyStatusColors=apply;apply();
+  }
+  function install(){injectFix();installSelection();installWorkerButtons();installPolling();installAdminFilters();installStatusColors();setTimeout(function(){installSelection();installWorkerButtons();installPolling();installAdminFilters();installStatusColors()},500)}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install);else install();
 })();

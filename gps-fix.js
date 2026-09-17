@@ -15,16 +15,18 @@
       .wrap{min-height:100vh!important;}
       .section,.panel,.card{position:relative;z-index:1;}
 
-      /* Never let the fixed home menu cover dialogs or important controls */
-      .home-control{z-index:9000!important;}
+      /* The home navigation must never cover forms, confirmations or dashboards. */
+      .home-control{display:none!important;}
+      body:has(#home.promo-home:not(.hidden)) .home-control{display:flex!important;}
       #modal,.modal{z-index:2000000!important;}
       #modal .modalbox,.modal .modalbox{position:relative!important;z-index:2000001!important;max-height:calc(100vh - 24px)!important;overflow:auto!important;}
       .modal.hidden{display:none!important;}
 
-      /* Phone: use the whole width and make every page readable */
+      /* Phone: full width, no horizontal overflow and enough room below controls. */
       @media(max-width:700px){
         html,body{width:100%;min-width:0;overflow-x:hidden!important;}
-        .wrap{width:100%!important;max-width:none!important;padding:10px 10px 118px!important;}
+        .wrap{width:100%!important;max-width:none!important;padding:10px 10px 24px!important;}
+        body:not(:has(#home.promo-home:not(.hidden))) .wrap{padding-bottom:24px!important;}
         .panel,.card{width:100%!important;border-radius:16px!important;padding:13px!important;}
         .grid2,.hero,.order{grid-template-columns:1fr!important;}
         .cards{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;}
@@ -36,29 +38,52 @@
         #workerOrders,#adminOrders,#trackResult{width:100%!important;}
         #workerOrders .panel,#adminOrders .panel{overflow:visible!important;}
         #workerOrders p,#adminOrders p,#trackResult p{word-break:break-word!important;line-height:1.45!important;}
-        .home-control{left:5px!important;right:5px!important;bottom:5px!important;transform:none!important;width:auto!important;max-width:none!important;display:grid!important;grid-template-columns:1.5fr 1fr 1fr!important;gap:4px!important;padding:5px!important;border-radius:15px!important;}
+
+        /* Home menu exists only on the home screen and has reserved space. */
+        body:has(#home.promo-home:not(.hidden)) .wrap{padding-bottom:94px!important;}
+        .home-control{left:5px!important;right:5px!important;bottom:5px!important;transform:none!important;width:auto!important;max-width:none!important;display:grid!important;grid-template-columns:1.5fr 1fr 1fr!important;gap:4px!important;padding:5px!important;border-radius:15px!important;z-index:9000!important;}
         .home-control button{min-width:0!important;min-height:48px!important;padding:7px 3px!important;font-size:11px!important;line-height:1.15!important;white-space:normal!important;}
         .home-control button span{display:block!important;margin:0 0 2px!important;font-size:18px!important;}
 
-        /* Home artwork: fill a useful mobile area instead of appearing tiny */
-        .promo-home{width:100%!important;overflow:hidden!important;}
-        .promo-art{width:100%!important;min-height:500px!important;background:#fff!important;}
-        .promo-art>img{width:100%!important;height:500px!important;object-fit:fill!important;display:block!important;}
+        /* Home artwork fills the complete phone viewport. */
+        .promo-home{width:100vw!important;margin-left:calc(50% - 50vw)!important;overflow:hidden!important;background:#fff!important;}
+        .promo-art{position:relative!important;width:100vw!important;height:100svh!important;min-height:100svh!important;max-height:100svh!important;background:#fff!important;overflow:hidden!important;}
+        .promo-art>img{width:100vw!important;height:100svh!important;min-height:100svh!important;max-height:100svh!important;object-fit:fill!important;display:block!important;margin:0!important;border-radius:0!important;}
         .promo-hotspot{z-index:5!important;}
         .promo-service{width:12.7%!important;height:13.5%!important;}
         .promo-service.s0{left:1.5%!important}.promo-service.s1{left:15.9%!important}.promo-service.s2{left:30.3%!important}.promo-service.s3{left:44.7%!important}.promo-service.s4{left:59.1%!important}.promo-service.s5{left:73.5%!important}
         .promo-service.s6{left:1.5%!important;top:59%!important}.promo-service.s7{left:15.9%!important;top:59%!important}.promo-service.s8{left:30.3%!important;top:59%!important}.promo-service.s9{left:44.7%!important;top:59%!important}.promo-service.s10{left:59.1%!important;top:59%!important}.promo-service.s11{left:73.5%!important;top:59%!important}
-        .social-hub{width:calc(100% - 16px)!important;margin:14px auto 128px!important;padding:14px 10px!important;border-radius:18px!important;}
+        .social-hub{width:calc(100% - 16px)!important;margin:14px auto 24px!important;padding:14px 10px!important;border-radius:18px!important;}
         .social-grid{grid-template-columns:repeat(2,1fr)!important;gap:7px!important;}
         .social-btn{min-height:46px!important;font-size:12px!important;}
         .social-title{font-size:18px!important;}
         .social-sub{font-size:12px!important;}
       }
 
+      /* Desktop/tablet home artwork also uses the full available viewport. */
+      @media(min-width:701px){
+        .promo-home{width:100vw!important;margin-left:calc(50% - 50vw)!important;overflow:hidden!important;}
+        .promo-art{width:100vw!important;height:calc(100vh - 1px)!important;min-height:620px!important;overflow:hidden!important;}
+        .promo-art>img{width:100vw!important;height:100%!important;object-fit:fill!important;display:block!important;border-radius:0!important;}
+      }
+
+      /* Selected sections are normal document pages; nothing fixed should cover them. */
+      body:not(:has(#home.promo-home:not(.hidden))) .social-hub{display:none!important;}
+      body:not(:has(#home.promo-home:not(.hidden))) .home-control{display:none!important;}
+      body:not(:has(#home.promo-home:not(.hidden))) .top{position:sticky!important;z-index:100!important;}
+
       .worker-gps-box{margin-top:10px;padding:12px;border-radius:13px;background:#eef8f6;border:1px solid #cfe4df;line-height:1.55;}
       .worker-gps-box a{display:inline-block;margin-top:6px;color:#087f79;font-weight:900;text-decoration:none;}
       .worker-gps-accuracy{font-size:12px;color:#5f7471;}
       .gps-live-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#18a060;margin-right:5px;}
+
+      /* Keep modal actions visible and tappable on small screens. */
+      @media(max-width:700px){
+        .modal{padding:8px!important;align-items:flex-start!important;}
+        .modalbox{width:100%!important;max-width:none!important;margin:0!important;max-height:calc(100svh - 16px)!important;padding:14px!important;border-radius:18px!important;}
+        .modalbox .actions{display:grid!important;grid-template-columns:1fr!important;gap:8px!important;}
+        .modalbox .actions button{width:100%!important;min-height:48px!important;}
+      }
     `;
     document.head.appendChild(s);
   }
@@ -107,7 +132,6 @@
   }
 
   function installWorkerButtons(){
-    /* These replacements use the same selected order ID and therefore bypass the old lexical activeOrderId bug. */
     window.startWork=async function(){
       try{await setStatus('Бажарилмоқда');}catch(e){var m=document.getElementById('workerMessage');if(m)m.innerHTML='<div class="error">'+esc(e.message)+'</div>';}
     };
@@ -142,7 +166,6 @@
     installSelection();
     installWorkerButtons();
     installPolling();
-    /* Retry once after other deferred scripts have attached their functions. */
     setTimeout(function(){installSelection();installWorkerButtons();installPolling();},500);
   }
 

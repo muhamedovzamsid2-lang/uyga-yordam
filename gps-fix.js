@@ -65,6 +65,24 @@
         .social-btn{min-width:0!important;min-height:48px!important;padding:8px 6px!important;box-sizing:border-box!important;border-radius:13px!important;font-size:12px!important;gap:6px!important;}
         .social-btn span:first-child{font-size:18px!important;}
 
+        /* STEP 5 — only inner worker/admin/track screens. */
+        #worker,#admin,#track{padding-top:2px!important;}
+        #worker .panel,#admin .panel,#track .panel{box-shadow:0 6px 20px #103d370c!important;}
+        #worker .stats,#admin .stats{margin-bottom:10px!important;}
+        #worker .stats .card,#admin .stats .card{min-height:72px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;}
+        #worker .stat b,#admin .stat b{font-size:23px!important;line-height:1.1!important;margin-bottom:3px!important;}
+        #workerOrders .order-card,#adminOrders .order-card{padding:12px!important;margin:0 0 9px!important;border-radius:15px!important;box-shadow:0 5px 16px #103d370b!important;}
+        #workerOrders .order-card:last-child,#adminOrders .order-card:last-child{margin-bottom:0!important;}
+        #workerOrders .order,#adminOrders .order{gap:9px!important;}
+        #workerOrders .order h3,#adminOrders .order h3{font-size:16px!important;line-height:1.3!important;margin:0 0 5px!important;}
+        #workerOrders .status,#adminOrders .status{font-size:11px!important;padding:5px 8px!important;}
+        #workerOrders .actions,#adminOrders .actions{margin-top:8px!important;}
+        #workerOrders .actions button,#adminOrders .actions button{min-height:44px!important;}
+        #workerMessage,#adminMessage,#trackResult{margin-top:9px!important;}
+        .worker-gps-box{padding:11px!important;border-radius:14px!important;}
+        #worker .notice,#admin .notice,#track .notice{padding:11px!important;border-radius:13px!important;line-height:1.45!important;}
+        #worker .error,#admin .error,#track .error,#worker .success,#admin .success,#track .success{padding:11px!important;border-radius:13px!important;line-height:1.45!important;}
+
         .modal{padding:8px!important;align-items:flex-start!important;}
         .modalbox{width:100%!important;max-width:none!important;margin:0!important;max-height:calc(100svh - 16px)!important;padding:14px!important;border-radius:18px!important;}
         .modalbox .actions{display:grid!important;grid-template-columns:1fr!important;gap:8px!important;}

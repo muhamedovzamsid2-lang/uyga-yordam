@@ -400,6 +400,40 @@ button{
     grid-template-columns:1fr;
   }
 }
+
+.social-links{
+  margin:30px 0 10px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+.social-link{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:52px;
+  padding:12px 14px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:#fff;
+  color:var(--ink);
+  text-decoration:none;
+  font-weight:800;
+  box-shadow:0 8px 25px #103d3710;
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.social-link:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 30px #103d3718;
+}
+@media(max-width:850px){
+  .social-links{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:520px){
+  .social-links{grid-template-columns:1fr}
+}
+
 </style>
 </head>
 
@@ -840,6 +874,17 @@ button{
 
   </div>
 
+</section>
+
+
+<section id="social-links" class="section" aria-label="Ижтимоий тармоқлар">
+  <h2>Биз билан ижтимоий тармоқларда</h2>
+  <div class="social-links">
+    <a class="social-link" href="https://www.instagram.com/uygayordam" target="_blank" rel="noopener noreferrer">📷 Instagram</a>
+    <a class="social-link" href="https://t.me/uygayordam_uz" target="_blank" rel="noopener noreferrer">✈️ Telegram</a>
+    <a class="social-link" href="https://www.facebook.com/share/1WNgTj2yhB/" target="_blank" rel="noopener noreferrer">🔵 Facebook</a>
+    <a class="social-link" href="https://www.tiktok.com/@uygayordam" target="_blank" rel="noopener noreferrer">🎵 TikTok</a>
+  </div>
 </section>
 
 </main>

@@ -1,0 +1,35 @@
+name: Fix static cache
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch server cache policy
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('server.js')
+          s=p.read_text()
+          old="<script src=\"/pricing.js\" defer></script><script src=\"/gps-fix.js\" defer></script>"
+          new="<script src=\"/pricing.js?v=20260917-3\" defer></script><script src=\"/gps-fix.js?v=20260917-3\" defer></script>"
+          s=s.replace(old,new)
+          old2="res.writeHead(200,{'Content-Type':ct,'Cache-Control':'public, max-age=3600'});fs.createReadStream(f).pipe(res)"
+          new2="if(ext==='.js'){res.writeHead(200,{'Content-Type':ct,'Cache-Control':'no-store, no-cache, must-revalidate, proxy-revalidate','Pragma':'no-cache','Expires':'0'});return fs.createReadStream(f).pipe(res)}res.writeHead(200,{'Content-Type':ct,'Cache-Control':'public, max-age=3600'});fs.createReadStream(f).pipe(res)"
+          s=s.replace(old2,new2)
+          p.write_text(s)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add server.js
+          git diff --cached --quiet || git commit -m "Fix frontend asset cache for mobile"
+          git push

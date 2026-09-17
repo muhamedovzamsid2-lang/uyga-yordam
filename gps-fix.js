@@ -47,10 +47,10 @@
         .home-control button{min-width:0!important;min-height:48px!important;padding:7px 3px!important;font-size:11px!important;line-height:1.15!important;white-space:normal!important;}
         .home-control button span{display:block!important;margin:0 0 2px!important;font-size:18px!important;}
 
-        /* STEP 1 deliberately leaves the home artwork untouched. */
+        /* STEP 2 — preserve the home artwork aspect ratio; do not stretch the image. */
         .promo-home{width:100vw!important;margin-left:calc(50% - 50vw)!important;overflow:hidden!important;background:#fff!important;}
-        .promo-art{position:relative!important;width:100vw!important;height:100svh!important;min-height:100svh!important;max-height:100svh!important;background:#fff!important;overflow:hidden!important;}
-        .promo-art>img{width:100vw!important;height:100svh!important;min-height:100svh!important;max-height:100svh!important;object-fit:fill!important;display:block!important;margin:0!important;border-radius:0!important;}
+        .promo-art{position:relative!important;width:100vw!important;height:auto!important;min-height:0!important;max-height:none!important;background:#fff!important;overflow:hidden!important;}
+        .promo-art>img{width:100vw!important;height:auto!important;min-height:0!important;max-height:none!important;object-fit:initial!important;display:block!important;margin:0!important;border-radius:0!important;}
         .promo-hotspot{z-index:5!important;}
         .promo-service{width:12.7%!important;height:13.5%!important;}
         .promo-service.s0{left:1.5%!important}.promo-service.s1{left:15.9%!important}.promo-service.s2{left:30.3%!important}.promo-service.s3{left:44.7%!important}.promo-service.s4{left:59.1%!important}.promo-service.s5{left:73.5%!important}

@@ -1,19 +1,19 @@
 // UYGA YORDAM — customer growth + service pricing layer
-// Keeps existing visual structure unchanged.
+// Current starting prices for external-worker operating model.
 (function(){
   const SERVICES=[
-    {name:'Уй тозалаш',price:80000,unit:'бошланғич',desc:'Квартира/уй тозалаш; якуний нарх майдон ва иш ҳажмига қараб аниқланади.'},
-    {name:'Кир ювиш',price:60000,unit:'бошланғич',desc:'Кир ювиш ва мато буюмлари; оғирлик/турига қараб.'},
-    {name:'Диван / матрас',price:120000,unit:'бошланғич',desc:'Кимёвий тозалаш; ўлчам ва буюм турига қараб.'},
-    {name:'Бозордан олиб келиш',price:30000,unit:'хизматдан',desc:'Харид ва етказиб бериш; маҳсулот пули алоҳида.'},
-    {name:'Курьер',price:30000,unit:'хизматдан',desc:'Етказиб бериш; масофага қараб якуний ҳисоб.'},
-    {name:'Сантехник',price:50000,unit:'чақирувдан',desc:'Диагностика/майда иш; материаллар алоҳида.'},
-    {name:'Кондиционер',price:100000,unit:'хизматдан',desc:'Текширув/сервис; иш турига қараб.'},
-    {name:'Маиший техника',price:100000,unit:'хизматдан',desc:'Диагностика/майда таъмир; эҳтиёт қисмлар алоҳида.'},
-    {name:'Мебель',price:100000,unit:'хизматдан',desc:'Йиғиш/таъмир; ҳажм ва мураккабликка қараб.'},
-    {name:'Боғбон',price:100000,unit:'хизматдан',desc:'Боғ ишлари; майдон ва иш ҳажмига қараб.'},
-    {name:'Юк ташиш',price:150000,unit:'хизматдан',desc:'Машина/юк ҳажми ва масофага қараб.'},
-    {name:'Электрик',price:50000,unit:'чақирувдан',desc:'Диагностика/майда иш; материаллар алоҳида.'}
+    {name:'Уй тозалаш',price:200000,unit:'бошланғич',desc:'Квартира/уй тозалаш; якуний нарх майдон ва иш ҳажмига қараб аниқланади.'},
+    {name:'Кир ювиш ва дазмоллаш',price:120000,unit:'бошланғич',desc:'Кир ювиш ва дазмоллаш; ҳажм ва буюм турига қараб.'},
+    {name:'Гилам ва матрас тозалаш',price:80000,unit:'бошланғич',desc:'Гилам/матрас тозалаш; ўлчам ва буюм турига қараб якуний ҳисобланади.'},
+    {name:'Бозор қилиб бериш',price:50000,unit:'хизматдан',desc:'Харид қилиб бериш ва етказиш; маҳсулот пули алоҳида.'},
+    {name:'Курьер',price:30000,unit:'хизматдан',desc:'Етказиб бериш; масофага қараб якуний ҳисобланади.'},
+    {name:'Сантехник',price:150000,unit:'чақирувдан',desc:'Чақирув ва диагностика; мураккаб иш ҳамда материаллар алоҳида.'},
+    {name:'Кондиционер',price:100000,unit:'бошланғич',desc:'Текширув/сервис; иш тури ва кондиционер ҳолатига қараб.'},
+    {name:'Маиший техника таъмирлаш',price:100000,unit:'бошланғич',desc:'Диагностика/майда таъмир; эҳтиёт қисмлар алоҳида.'},
+    {name:'Мебел йиғиш',price:100000,unit:'бошланғич',desc:'Йиғиш/ўрнатиш; ҳажм ва мураккабликка қараб.'},
+    {name:'Боғбон / ландшафт',price:100000,unit:'бошланғич',desc:'Боғ ишлари; майдон ва иш ҳажмига қараб.'},
+    {name:'Юк ташиш',price:150000,unit:'бошланғич',desc:'Машина/юк ҳажми ва масофага қараб; қўшимча юкчилар алоҳида ҳисобланиши мумкин.'},
+    {name:'Бошқалар',price:0,unit:'келишилади',desc:'Мижоз эҳтиёжига қараб хизмат тури, иш ҳажми ва нархи келишилади.'}
   ];
   window.UYGA_SERVICES=SERVICES;
   window.UYGA_PROMO={firstOrderDiscount:10,referralBonus:20000,repeatBonus:5};
@@ -22,7 +22,7 @@
   function render(){
     const box=document.getElementById('services');
     if(!box)return;
-    box.innerHTML=SERVICES.map((s,i)=>`<div class="card"><div style="font-size:28px">${['🧹','🧺','🛋️','🛒','🚚','🔧','❄️','🔌','🪑','🌿','🚛','⚡'][i]}</div><h3>${s.name}</h3><div class="price">${money(s.price)} <span class="small">${s.unit}</span></div><p class="mut small">${s.desc}</p><button type="button" class="cta" onclick="window.chooseService&&window.chooseService(${i})">Буюртма бериш</button></div>`).join('');
+    box.innerHTML=SERVICES.map((s,i)=>`<div class="card"><div style="font-size:28px">${['🧹','🧺','🧼','🛒','📦','🔧','❄️','🔌','🪑','🌿','🚛','🛠️'][i]}</div><h3>${s.name}</h3><div class="price">${s.price>0?money(s.price):'Келишилади'} <span class="small">${s.unit}</span></div><p class="mut small">${s.desc}</p><button type="button" class="cta" onclick="window.chooseService&&window.chooseService(${i})">Буюртма бериш</button></div>`).join('');
   }
 
   function installAdminGpsPanel(){

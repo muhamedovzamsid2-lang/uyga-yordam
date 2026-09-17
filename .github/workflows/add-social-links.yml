@@ -1,0 +1,91 @@
+name: Add social media links
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  add-social-links:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Add social media block
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          if 'id="social-links"' in text:
+              print('Social links already present; nothing to do.')
+              raise SystemExit(0)
+
+          css = '''
+          .social-links{
+            margin:30px 0 10px;
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:12px;
+          }
+          .social-link{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:8px;
+            min-height:52px;
+            padding:12px 14px;
+            border:1px solid var(--line);
+            border-radius:16px;
+            background:#fff;
+            color:var(--ink);
+            text-decoration:none;
+            font-weight:800;
+            box-shadow:0 8px 25px #103d3710;
+            transition:transform .15s ease,box-shadow .15s ease;
+          }
+          .social-link:hover{
+            transform:translateY(-2px);
+            box-shadow:0 12px 30px #103d3718;
+          }
+          @media(max-width:850px){
+            .social-links{grid-template-columns:repeat(2,1fr)}
+          }
+          @media(max-width:520px){
+            .social-links{grid-template-columns:1fr}
+          }
+          '''
+
+          block = '''
+          <section id="social-links" class="section" aria-label="Ижтимоий тармоқлар">
+            <h2>Биз билан ижтимоий тармоқларда</h2>
+            <div class="social-links">
+              <a class="social-link" href="https://www.instagram.com/uygayordam" target="_blank" rel="noopener noreferrer">📷 Instagram</a>
+              <a class="social-link" href="https://t.me/uygayordam_uz" target="_blank" rel="noopener noreferrer">✈️ Telegram</a>
+              <a class="social-link" href="https://www.facebook.com/share/1WNgTj2yhB/" target="_blank" rel="noopener noreferrer">🔵 Facebook</a>
+              <a class="social-link" href="https://www.tiktok.com/@uygayordam" target="_blank" rel="noopener noreferrer">🎵 TikTok</a>
+            </div>
+          </section>
+          '''
+
+          if '</style>' not in text or '</main>' not in text:
+              raise SystemExit('Expected HTML markers were not found')
+
+          text = text.replace('</style>', css + '\n</style>', 1)
+          text = text.replace('</main>', block + '\n</main>', 1)
+          path.write_text(text, encoding='utf-8')
+          print('Social media links added.')
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "Add Instagram Telegram Facebook TikTok links"
+          git push

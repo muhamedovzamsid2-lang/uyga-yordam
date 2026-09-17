@@ -55,11 +55,14 @@
         .promo-service{width:12.7%!important;height:13.5%!important;}
         .promo-service.s0{left:1.5%!important}.promo-service.s1{left:15.9%!important}.promo-service.s2{left:30.3%!important}.promo-service.s3{left:44.7%!important}.promo-service.s4{left:59.1%!important}.promo-service.s5{left:73.5%!important}
         .promo-service.s6{left:1.5%!important;top:59%!important}.promo-service.s7{left:15.9%!important;top:59%!important}.promo-service.s8{left:30.3%!important;top:59%!important}.promo-service.s9{left:44.7%!important;top:59%!important}.promo-service.s10{left:59.1%!important;top:59%!important}.promo-service.s11{left:73.5%!important;top:59%!important}
-        .social-hub{width:calc(100% - 16px)!important;margin:14px auto 24px!important;padding:14px 10px!important;border-radius:18px!important;}
-        .social-grid{grid-template-columns:repeat(2,1fr)!important;gap:7px!important;}
-        .social-btn{min-height:46px!important;font-size:12px!important;}
-        .social-title{font-size:18px!important;}
-        .social-sub{font-size:12px!important;}
+
+        /* STEP 3 — only the social block: compact, balanced and easy to tap. */
+        .social-hub{width:calc(100% - 20px)!important;margin:16px auto 26px!important;padding:16px 12px!important;border-radius:18px!important;box-sizing:border-box!important;}
+        .social-title{font-size:18px!important;line-height:1.25!important;}
+        .social-sub{font-size:12px!important;line-height:1.4!important;margin-top:5px!important;}
+        .social-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;margin-top:12px!important;}
+        .social-btn{min-width:0!important;min-height:48px!important;padding:8px 6px!important;box-sizing:border-box!important;border-radius:13px!important;font-size:12px!important;gap:6px!important;}
+        .social-btn span:first-child{font-size:18px!important;}
 
         .modal{padding:8px!important;align-items:flex-start!important;}
         .modalbox{width:100%!important;max-width:none!important;margin:0!important;max-height:calc(100svh - 16px)!important;padding:14px!important;border-radius:18px!important;}
